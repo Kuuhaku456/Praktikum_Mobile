@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:posttest5_096_filipus_manik/pages/Screen.dart';
+import 'package:posttest5_096_filipus_manik/pages/introduction_page.dart';
 import 'package:posttest5_096_filipus_manik/provider/anime_favorite_notifier.dart';
 import 'package:provider/provider.dart';
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Poppins',
       ),
-      home: Screen(),
+      home: const IntroductionPage(),
     );
   }
 }

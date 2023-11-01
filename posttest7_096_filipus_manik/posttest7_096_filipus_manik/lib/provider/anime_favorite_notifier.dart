@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:posttest5_096_filipus_manik/models/top_anime.dart';
 
-class AnimeFavoriteNotifier extends ChangeNotifier{
+class AnimeFavoriteNotifier with ChangeNotifier{
   List<Anime> _anime = [];
   List<Anime> get getAnime => _anime;
 
@@ -14,4 +14,5 @@ class AnimeFavoriteNotifier extends ChangeNotifier{
     _anime.remove(data);
     notifyListeners();
   }
+  
 }
