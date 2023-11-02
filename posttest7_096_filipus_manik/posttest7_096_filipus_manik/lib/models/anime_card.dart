@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -40,133 +41,140 @@ class _MyanimeCardState extends State<MyanimeCard> {
         color: Colors.yellow,
         borderRadius: BorderRadius.circular(10),
       ),
-      child: Row(
-        children: [
-          Container(
-            width: Lebar / 10,
-            height: 130,
-            margin: EdgeInsets.only(top: 10, bottom: 10, left: 10),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Color(0xFF374259),
-            ),
-            child: Center(
-              child: Text(
-                '${widget.index + 1}',
-                style: GoogleFonts.poppins(
-                  color: Colors.yellow,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+      child: Expanded(
+        child: Row(
+          children: [
+            Container(
+             width: Lebar / 10,
+              height: 130,
+              margin: EdgeInsets.only(top: 10, bottom: 10, left: 10),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Color(0xFF374259),
               ),
-            ),
-          ),
-          Container(
-            width: Lebar / 4.7,
-            height: 170,
-            margin: EdgeInsets.only(left: 20, right: 10, top: 15, bottom: 15),
-            decoration: BoxDecoration(
-              color: Colors.red,
-              borderRadius: BorderRadius.circular(10),
-              image: DecorationImage(
-                image: AssetImage(widget.imagePath),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          Container(
-            width: Lebar / 2.9,
-            height: 150,
-            padding: EdgeInsets.only(top: 5, bottom: 5),
-            decoration: BoxDecoration(
-                // color: Colors.green
-                ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  width: Lebar / 2.9,
-                  height: 70,
-                  padding: EdgeInsets.only(top: 7),
-                  decoration: BoxDecoration(
-                      // color: Colors.red
-                      ),
-                  child: Text(
-                    widget.title,
-                    style: GoogleFonts.poppins(
-                      color: Color(0xFF374259),
-                      fontSize: 20,
-                    ),
+              child: Center(
+                child: Text(
+                  '${widget.index + 1}',
+                  style: GoogleFonts.poppins(
+                    color: Colors.yellow,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-                Container(
-                  width: Lebar / 2.9,
-                  height: 70,
-                  decoration: BoxDecoration(
-                      // color: Colors.blue
-                      ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '${widget.rating}, ${widget.episode}',
+              ),
+            ),
+            Container(
+              width: Lebar / 4.7,
+              height: 170,
+              margin: EdgeInsets.only(left: 20, right: 10, top: 15, bottom: 15),
+              decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.circular(10),
+                // image: DecorationImage(
+                //   image: AssetImage(widget.imagePath),
+                //   fit: BoxFit.cover,
+                // ),
+              ),
+              child:  CachedNetworkImage(
+                  imageUrl: widget.imagePath,
+                  placeholder: (context, url) => CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+              ),
+            ),
+            Container(
+              width: Lebar / 2.9,
+              height: 150,
+              padding: EdgeInsets.only(top: 5, bottom: 5),
+              decoration: BoxDecoration(
+                  color: Colors.green
+                  ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Container(
+                      padding: EdgeInsets.only(top: 7),
+                      decoration: BoxDecoration(
+                          color: Colors.red
+                          ),
+                      child: Text(
+                        widget.title,
                         style: GoogleFonts.poppins(
                           color: Color(0xFF374259),
+                          fontSize: 20,
                         ),
                       ),
-                      InkWell(
-                        onTap:
-                            //_handleTap, // Ketika kontainer ditekan, panggil _handleTap.
-                            (){
-                              
-                            },
-                        child: AnimatedContainer(
-                          width: Lebar / 4.5,
-                          height: 40,
-                          duration: Duration(milliseconds: 300),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: containerColor,
-                              boxShadow: [
-                                BoxShadow()
-                              ]), // Durasi animasi. // Ganti warna kontainer sesuai kondisi.
-                          child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Icon(
-                                  Icons.grade,
-                                  color: iconColor, // Atur warna ikon.
-                                  size: 25,
-                                ),
-                                Text(
-                                  '${widget.rating}',
-                                  style: GoogleFonts.poppins(
-                                    color: textColor,
-                                    fontSize: 20,
+                    ),
+                  ),
+                  Container(
+                    width: Lebar / 2.9,
+                    height: 70,
+                    decoration: BoxDecoration(
+                        // color: Colors.blue
+                        ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '${widget.rating}, ${widget.episode}',
+                          style: GoogleFonts.poppins(
+                            color: Color(0xFF374259),
+                          ),
+                        ),
+                        InkWell(
+                          onTap:
+                              //_handleTap, // Ketika kontainer ditekan, panggil _handleTap.
+                              (){
+                                
+                              },
+                          child: AnimatedContainer(
+                            width: Lebar / 4.5,
+                            height: 40,
+                            duration: Duration(milliseconds: 300),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: containerColor,
+                                boxShadow: [
+                                  BoxShadow()
+                                ]), // Durasi animasi. // Ganti warna kontainer sesuai kondisi.
+                            child: Center(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Icon(
+                                    Icons.grade,
+                                    color: iconColor, // Atur warna ikon.
+                                    size: 25,
                                   ),
-                                ),
-                              ],
+                                  Text(
+                                    '${widget.rating}',
+                                    style: GoogleFonts.poppins(
+                                      color: textColor,
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          IconButton(
-            icon:
-                widget.isFavorite ? Icon(Icons.favorite) : Icon(Icons.favorite_border),
-            iconSize: 40,
-            color: widget.isFavorite ? Color(0xFF374259) : null,
-            onPressed: (){
-              widget.handleTap?.call();
-            },
-          ),
-        ],
+            IconButton(
+              icon:
+                  widget.isFavorite ? Icon(Icons.favorite) : Icon(Icons.favorite_border),
+              iconSize: 20,
+              color: widget.isFavorite ? Color(0xFF374259) : null,
+              onPressed: (){
+                widget.handleTap?.call();
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

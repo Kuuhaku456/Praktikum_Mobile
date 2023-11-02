@@ -5,6 +5,8 @@ import 'package:posttest5_096_filipus_manik/pages/Home_Page.dart';
 import 'package:posttest5_096_filipus_manik/pages/Schedule.dart';
 import 'package:posttest5_096_filipus_manik/pages/Top_Anime.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:posttest5_096_filipus_manik/provider/Top_Anime_notifier.dart';
+import 'package:provider/provider.dart';
 
 class Screen extends StatefulWidget {
   const Screen({super.key});

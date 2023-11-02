@@ -1,51 +1,67 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:posttest5_096_filipus_manik/main.dart';
 import 'package:posttest5_096_filipus_manik/models/anime_card.dart';
 import 'package:posttest5_096_filipus_manik/models/top_anime.dart';
+import 'package:posttest5_096_filipus_manik/provider/Top_Anime_notifier.dart';
 import 'package:posttest5_096_filipus_manik/provider/anime_favorite_notifier.dart';
+import 'package:posttest5_096_filipus_manik/repository/anime_repo.dart';
 import 'package:provider/provider.dart';
 
 
-
-class TopsAnimes extends StatefulWidget {
+class TopsAnimes extends StatelessWidget {
   const TopsAnimes({super.key});
 
   @override
-  State<TopsAnimes> createState() => _TopsAnimesState();
+  Widget build(BuildContext context) {
+    return 
+    ChangeNotifierProvider( 
+      create: (_) => TopAnimeNotifier(repositories: getIt.get<AnimeRepository>()),
+      child: TopsAnimeView(),
+
+    );
+  }
 }
 
-class _TopsAnimesState extends State<TopsAnimes> {
+class TopsAnimeView extends StatefulWidget {
+  const TopsAnimeView({super.key});
+
+  @override
+  State<TopsAnimeView> createState() => _TopsAnimeViewState();
+}
+
+class _TopsAnimeViewState extends State<TopsAnimeView> {
   bool isTapped = false;
   // bool isFavorite = false;
+  final List<Anime> ListAnime = [];
+  // final List<Anime> ListAnime = [
+  //   Anime(
+  //       Judul: 'Attack on Titan',
+  //       Rating: '8.59',
+  //       Tipe: 'TV',
+  //       Episode: '24 Eps',
+  //       imagePath: 'assets/aot.png'),
+  //   Anime(
+  //       Judul: 'Death Note',
+  //       Rating: '8.62',
+  //       Tipe: 'TV',
+  //       Episode: '37 Eps',
+  //       imagePath: 'assets/death_note.png'),
+  //   Anime(
+  //       Judul: 'Fullmetal Alchemist',
+  //       Rating: '9.10',
+  //       Tipe: 'TV',
+  //       Episode: '64 Eps',
+  //       imagePath: 'assets/fullmetal_alchemist.png'),
+  //   Anime(
+  //       Judul: 'Hunter x Hunter',
+  //       Rating: '9.05',
+  //       Tipe: 'TV',
+  //       Episode: '148 Eps',
+  //       imagePath: 'assets/hxh.png'),
 
-  final List<Anime> ListAnime = [
-    Anime(
-        Judul: 'Attack on Titan',
-        Rating: '8.59',
-        Tipe: 'TV',
-        Episode: '24 Eps',
-        imagePath: 'assets/aot.png'),
-    Anime(
-        Judul: 'Death Note',
-        Rating: '8.62',
-        Tipe: 'TV',
-        Episode: '37 Eps',
-        imagePath: 'assets/death_note.png'),
-    Anime(
-        Judul: 'Fullmetal Alchemist',
-        Rating: '9.10',
-        Tipe: 'TV',
-        Episode: '64 Eps',
-        imagePath: 'assets/fullmetal_alchemist.png'),
-    Anime(
-        Judul: 'Hunter x Hunter',
-        Rating: '9.05',
-        Tipe: 'TV',
-        Episode: '148 Eps',
-        imagePath: 'assets/hxh.png'),
-        
-  ];
+  // ];
 
   void toggleFavorite(Anime data) {
     if (data.isFavorite) {
@@ -79,7 +95,8 @@ class _TopsAnimesState extends State<TopsAnimes> {
                   setState(() {
                     data.isFavorite = true;
                   });
-                  Provider.of<AnimeFavoriteNotifier>(context, listen: false).addToFavorite(data);
+                  Provider.of<AnimeFavoriteNotifier>(context, listen: false)
+                      .addToFavorite(data);
                   Navigator.of(context).pop();
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
@@ -123,6 +140,8 @@ class _TopsAnimesState extends State<TopsAnimes> {
   @override
   void initState() {
     super.initState();
+    //context.read<TopAnimeNotifier>().getAnimeTop();
+    Provider.of<TopAnimeNotifier>(context, listen: false).getAnimeTop();
   }
 
   @override
@@ -145,24 +164,35 @@ class _TopsAnimesState extends State<TopsAnimes> {
           child: Container(
             width: Lebar,
             height: 900,
-            child: ListView.builder(
-                itemCount: ListAnime.length,
-                itemBuilder: (context, index) {
-                  return MyanimeCard(
-                    index: index,
-                    title: ListAnime[index].Judul,
-                    imagePath: ListAnime[index].imagePath,
-                    rating: ListAnime[index].Rating,
-                    episode: ListAnime[index].Episode,
-                    isFavorite: ListAnime[index].isFavorite,
-                    handleTap: (){
-                      toggleFavorite(ListAnime[index]);
-                      // setState(() {
-                      //   ListTopAnime[index].isFavorite = !ListTopAnime[index].isFavorite;
-                      // });
-                    },
-                  );
-                }),
+            child: Consumer<TopAnimeNotifier>(
+              builder: (context, provider, child) {
+              if (provider.state == ProviderState.loaded){
+                return ListView.builder(
+                  itemCount: provider.getAnime.length,
+                  itemBuilder: (context, index) {
+                    return MyanimeCard(
+                      index: index,
+                      title: provider.getAnime[index].Judul,
+                      imagePath: provider.getAnime[index].imagePath,
+                      rating: provider.getAnime[index].Rating,
+                      episode: provider.getAnime[index].Episode,
+                      isFavorite: provider.getAnime[index].isFavorite,
+                      handleTap: () {
+                        toggleFavorite(provider.getAnime[index]);
+                        // setState(() {
+                        //   ListTopAnime[index].isFavorite = !ListTopAnime[index].isFavorite;
+                        // });
+                      },
+                    );
+                });
+              }
+              else if(provider.state == ProviderState.loading){
+                return Center(child: CircularProgressIndicator());
+              }
+              return Text(
+                'Kosong',
+              );
+            }),
           ),
         ),
       ),

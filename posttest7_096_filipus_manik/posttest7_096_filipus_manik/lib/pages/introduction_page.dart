@@ -65,11 +65,10 @@ class _IntroductionPageState extends State<IntroductionPage> {
                 onLastPage
                   ? GestureDetector(
                   onTap: (){
-                    Navigator.of(context).push(
-                      CupertinoPageRoute(
-                        builder: (BuildContext context) {
-                          return const Screen();
-                        }
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>const Screen()
                       )
                     );
                   },

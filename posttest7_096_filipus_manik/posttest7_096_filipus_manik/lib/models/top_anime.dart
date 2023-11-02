@@ -1,4 +1,5 @@
 class Anime {
+  String id;
   String Judul;
   String Rating;
   String Tipe;
@@ -8,6 +9,7 @@ class Anime {
   final bool isTapped;
 
   Anime({
+    required this.id,
     required this.Judul,
     required this.Rating,
     required this.Tipe,
