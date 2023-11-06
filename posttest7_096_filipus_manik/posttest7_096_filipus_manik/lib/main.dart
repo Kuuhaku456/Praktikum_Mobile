@@ -17,15 +17,7 @@ void main() async {
   );
 
   getIt.registerLazySingleton<AnimeRepository>(() => animeRepository);
-  //  print("masuk");
-  // print(getIt.get<AnimeRepository>().apiClient);
-  runApp(
-    //ChangeNotifierProvider(
-      //create: (_) => TopAnimeNotifier(repositories: AnimeRepository(apiClient: getIt.get<AnimeRepository>().apiClient)),
-      //child: 
-      const MyApp()
-    //),
-  );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

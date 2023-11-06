@@ -19,7 +19,6 @@ class TopsAnimes extends StatelessWidget {
     ChangeNotifierProvider( 
       create: (_) => TopAnimeNotifier(repositories: getIt.get<AnimeRepository>()),
       child: TopsAnimeView(),
-
     );
   }
 }
