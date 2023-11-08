@@ -95,7 +95,7 @@ class _MyanimeCardState extends State<MyanimeCard> {
                           widget.title,
                           style: GoogleFonts.poppins(
                             color: Color(0xFF374259),
-                            fontSize: 30,
+                            fontSize: 28,
                           ),
                           maxLines: 2,
                         ),
@@ -112,9 +112,10 @@ class _MyanimeCardState extends State<MyanimeCard> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '${widget.rating}, ${widget.episode} eps',
+                          '${widget.episode} eps',
                           style: GoogleFonts.poppins(
                             color: Color(0xFF374259),
+                            fontSize: 20,
                           ),
                         ),
                         InkWell(
