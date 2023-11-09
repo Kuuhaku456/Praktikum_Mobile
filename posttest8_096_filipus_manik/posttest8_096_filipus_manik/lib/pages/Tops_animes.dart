@@ -141,7 +141,7 @@ class _TopsAnimeViewState extends State<TopsAnimeView> {
                     return MyanimeCard(
                       index: index,
                       title: provider.getAnime[index].Judul,
-                      imagePath: provider.getAnime[index].imagePath,
+                      imagePath: provider.getAnime[index].imagePath,  
                       rating: provider.getAnime[index].Rating,
                       episode: provider.getAnime[index].Episode,
                       isFavorite: provider.getAnime[index].isFavorite,
