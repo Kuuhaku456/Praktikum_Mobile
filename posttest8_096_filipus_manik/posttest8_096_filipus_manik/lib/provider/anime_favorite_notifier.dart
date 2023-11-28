@@ -14,5 +14,4 @@ class AnimeFavoriteNotifier with ChangeNotifier{
     _anime.remove(data);
     notifyListeners();
   }
-  
 }

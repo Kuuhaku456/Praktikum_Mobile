@@ -14,10 +14,10 @@ class _FavoritesState extends State<Favorites> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF374259),
+      backgroundColor: const Color(0xFF374259),
       appBar: AppBar(
-        backgroundColor: Color(0xFF374259),
-        title: Text('Favorites Anime'),
+        backgroundColor: const Color(0xFF374259),
+        title:const  Text('Favorites Anime'),
         centerTitle: true,
       ),
       body:
@@ -28,7 +28,7 @@ class _FavoritesState extends State<Favorites> {
               itemBuilder: (context, index) {
                 return MyanimeCard(
                   index: index,
-                  title: provider.getAnime[index].Judul,
+                  title: provider.getAnime[index].judul,
                   imagePath: provider.getAnime[index].imagePath,
                   rating: provider.getAnime[index].Rating,
                   episode: provider.getAnime[index].Episode,

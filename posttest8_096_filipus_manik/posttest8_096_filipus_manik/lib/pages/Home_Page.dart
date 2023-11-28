@@ -2,18 +2,33 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jikan_api/jikan_api.dart';
+import 'package:posttest5_096_filipus_manik/models/anime.dart';
 import 'package:posttest5_096_filipus_manik/pages/Favorites.dart';
-import 'package:posttest5_096_filipus_manik/pages/input_anime_streaming_page.dart';
+import 'package:posttest5_096_filipus_manik/pages/detail_anime.dart';
 import 'package:posttest5_096_filipus_manik/pages/notifications.dart';
+import 'package:posttest5_096_filipus_manik/pages/signinpage.dart';
+import 'package:posttest5_096_filipus_manik/widget/anime_cards.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({super.key});
+  final id;
+  final Animes? anime;
+  const HomePage({
+    super.key,
+    this.id,
+    this.anime,
+  });
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  int id = 0;
+  void onTapped(int passid) {
+    id = passid;
+  }
+
   int _currentIndex = 0;
   final List<Widget> _slides = [
     Container(
@@ -209,6 +224,7 @@ class _HomePageState extends State<HomePage> {
       ),
     ),
   ];
+  List animeList = Animes.animeList;
   @override
   Widget build(BuildContext context) {
     var Lebar = MediaQuery.of(context).size.width;
@@ -216,18 +232,17 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF374259),
-        title: Text(
-          'CrunchRyoll',
-          style: GoogleFonts.poppins(
-            color: Colors.yellow,
-            fontSize: 20,
-            fontWeight: FontWeight.bold
-          )
-        ),
+        title: Text('CrunchRyoll',
+            style: GoogleFonts.poppins(
+                color: Colors.yellow,
+                fontSize: 20,
+                fontWeight: FontWeight.bold)),
         centerTitle: true,
         leading: GestureDetector(
-          onTap: () {
-          },
+          onTap: () => Navigator.of(context)
+                .push(CupertinoPageRoute(builder: (BuildContext context) {
+              return const MySigninPage();
+            })),
           child: Container(
             margin: EdgeInsets.all(10),
             alignment: Alignment.center,
@@ -246,14 +261,11 @@ class _HomePageState extends State<HomePage> {
               Icons.notifications,
               size: 30,
               color: Colors.yellow,
-            ), 
-            onPressed: () => Navigator.of(context).push(
-              CupertinoPageRoute(
-                builder: (BuildContext context) {
-                  return MyNotification();
-                }
-              )
             ),
+            onPressed: () => Navigator.of(context)
+                .push(CupertinoPageRoute(builder: (BuildContext context) {
+              return MyNotification();
+            })),
             disabledColor: Color(0xFF374259),
           ),
           CupertinoButton(
@@ -261,17 +273,13 @@ class _HomePageState extends State<HomePage> {
               Icons.favorite,
               size: 30,
               color: Colors.yellow,
-            ), 
-            onPressed: () => Navigator.of(context).push(
-              CupertinoPageRoute(
-                builder: (BuildContext context) {
-                  return Favorites();
-                }
-              )
             ),
-            disabledColor: Color(0xFF374259),
+            onPressed: () => Navigator.of(context)
+                .push(CupertinoPageRoute(builder: (BuildContext context) {
+              return const HomePage();
+            })),
+            disabledColor: const Color(0xFF374259),
           ),
-          
         ],
       ),
       body: Container(
@@ -292,8 +300,7 @@ class _HomePageState extends State<HomePage> {
                       fontFamily: 'Poppins',
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
-                      color: Colors.yellow
-                  ),
+                      color: Colors.yellow),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -321,63 +328,26 @@ class _HomePageState extends State<HomePage> {
               Text_genre(),
               genre_section(Lebar),
               recommendation_text(),
-              Container(
-                width: Lebar,
-                height: 270,
+              SizedBox(
+                width: double.infinity,
+                height: 300,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
-                    one_piece_card(),
-                    bnb_card(),
-                    mushoku_tensei_card(),
-                    Goblin_slayer_card(),
+                    for (int index = 0; index < animeList.length; index++)
+                      MyAnimeCards(
+                        onTap: () => Navigator.of(context).push(
+                            CupertinoPageRoute(
+                              builder: (BuildContext context) {
+                                return MyAnimeDetails(id: animeList[index].id);
+                        })),
+                        rating: animeList[index].rating,
+                        title: animeList[index].judul,
+                        imagePath: animeList[index].imagePath,
+                      )
                   ],
                 ),
-              ),
-              Container(
-                width: Lebar,
-                height: 60,
-                color: Color(0xFF374259),
-                margin: EdgeInsets.only(top: 20),
-                child: DefaultTabController(
-                  length: 3,
-                  child: TabBar(
-                    labelColor: Colors.yellow,
-                    labelStyle: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    tabs: [
-                      Tab(text: 'Anime'),
-                      Tab(text: 'Musik'),
-                      Tab(text: 'Berita'),
-                    ],
-                  ),
-                ),
-              ),
-              Container(
-                width: Lebar,
-                height: 400,
-                color: Colors.amberAccent,
-                margin: EdgeInsets.only(top: 20),
-                child: Center(
-                  child: Text(
-                    'COMING SOON',
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: 20),
-              Container(
-                width: Lebar,
-                height: 70,
-                color: Colors.red,
-              ),
+              )
             ],
           ),
         ),
@@ -418,350 +388,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-    );
-  }
-
-  Stack Goblin_slayer_card() {
-    return Stack(
-      children: [
-        Container(
-          width: 200,
-          height: 250,
-          margin: EdgeInsets.only(left: 10, right: 10, top: 10),
-          decoration: BoxDecoration(
-            color: Colors.black,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.black,
-                  blurRadius: 10,
-                  spreadRadius: 1,
-                  offset: Offset(2, 2)),
-            ],
-            image: DecorationImage(
-              image: AssetImage('assets/Gs2.png'),
-              filterQuality: FilterQuality.high,
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        Positioned(
-          top: 20,
-          right: 20,
-          child: Container(
-            width: 70,
-            height: 25,
-            decoration: BoxDecoration(
-              color: Colors.yellow,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(5),
-                bottomLeft: Radius.circular(5),
-                topRight: Radius.circular(5),
-                bottomRight: Radius.circular(5),
-              ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Icon(
-                  Icons.star,
-                  size: 16,
-                  color: Colors.white,
-                ),
-                Text(
-                  '8.50',
-                  style: TextStyle(
-                    fontFamily: 'Poppins',
-                    fontSize: 15,
-                    color: Color(0xFF374259),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        Positioned(
-          top: 220,
-          left: 20,
-          child: Container(
-            width: 180,
-            height: 35,
-            padding: EdgeInsets.all(5),
-            decoration: BoxDecoration(
-              color: Colors.yellow,
-              borderRadius: BorderRadius.circular(5),
-            ),
-            child: Text(
-              'Goblin slayer S2',
-              style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF374259),
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Stack mushoku_tensei_card() {
-    return Stack(
-      children: [
-        Container(
-          width: 200,
-          height: 250,
-          margin: EdgeInsets.only(left: 10, right: 10, top: 10),
-          decoration: BoxDecoration(
-            color: Colors.black,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.black,
-                  blurRadius: 10,
-                  spreadRadius: 1,
-                  offset: Offset(2, 2)),
-            ],
-            image: DecorationImage(
-              image: AssetImage('assets/mushoku_tensei.jpeg'),
-              filterQuality: FilterQuality.medium,
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        Positioned(
-          top: 20,
-          right: 20,
-          child: Container(
-            width: 70,
-            height: 25,
-            decoration: BoxDecoration(
-              color: Colors.yellow,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(5),
-                bottomLeft: Radius.circular(5),
-                topRight: Radius.circular(5),
-                bottomRight: Radius.circular(5),
-              ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Icon(
-                  Icons.star,
-                  size: 16,
-                  color: Colors.white,
-                ),
-                Text(
-                  '8.88',
-                  style: TextStyle(
-                    fontFamily: 'Poppins',
-                    fontSize: 15,
-                    color: Color(0xFF374259),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        Positioned(
-          top: 220,
-          left: 20,
-          child: Container(
-            width: 180,
-            height: 35,
-            padding: EdgeInsets.all(5),
-            decoration: BoxDecoration(
-              color: Colors.yellow,
-              borderRadius: BorderRadius.circular(5),
-            ),
-            child: Text(
-              'MUSOKU TENSEI',
-              style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF374259),
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Stack bnb_card() {
-    return Stack(
-      children: [
-        Container(
-          width: 200,
-          height: 250,
-          margin: EdgeInsets.only(left: 10, right: 10, top: 10),
-          decoration: BoxDecoration(
-            color: Colors.black,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.black,
-                  blurRadius: 10,
-                  spreadRadius: 1,
-                  offset: Offset(2, 2)),
-            ],
-            image: DecorationImage(
-              image: AssetImage('assets/bnb.png'),
-              filterQuality: FilterQuality.medium,
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        Positioned(
-          top: 20,
-          right: 20,
-          child: Container(
-            width: 70,
-            height: 25,
-            decoration: BoxDecoration(
-              color: Colors.yellow,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(5),
-                bottomLeft: Radius.circular(5),
-                topRight: Radius.circular(5),
-                bottomRight: Radius.circular(5),
-              ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Icon(
-                  Icons.star,
-                  size: 16,
-                  color: Colors.white,
-                ),
-                Text(
-                  '7.49',
-                  style: TextStyle(
-                    fontFamily: 'Poppins',
-                    fontSize: 15,
-                    color: Color(0xFF374259),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        Positioned(
-          top: 220,
-          left: 20,
-          child: Container(
-            width: 180,
-            height: 35,
-            padding: EdgeInsets.all(5),
-            decoration: BoxDecoration(
-              color: Colors.yellow,
-              borderRadius: BorderRadius.circular(5),
-            ),
-            child: Text(
-              'BOUSHOKU',
-              style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF374259),
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Stack one_piece_card() {
-    return Stack(
-      children: [
-        Container(
-          width: 200,
-          height: 250,
-          margin: EdgeInsets.only(left: 10, right: 10, top: 10),
-          decoration: BoxDecoration(
-            color: Colors.black,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.black,
-                  blurRadius: 10,
-                  spreadRadius: 1,
-                  offset: Offset(2, 2)),
-            ],
-            image: DecorationImage(
-              image: AssetImage('assets/one_piece.jpg'),
-              filterQuality: FilterQuality.low,
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        Positioned(
-          top: 20,
-          right: 20,
-          child: Container(
-            width: 70,
-            height: 25,
-            decoration: BoxDecoration(
-              color: Colors.yellow,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(5),
-                bottomLeft: Radius.circular(5),
-                topRight: Radius.circular(5),
-                bottomRight: Radius.circular(5),
-              ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Icon(
-                  Icons.star,
-                  size: 16,
-                  color: Colors.white,
-                ),
-                Text(
-                  '8.45',
-                  style: TextStyle(
-                    fontFamily: 'Poppins',
-                    fontSize: 15,
-                    color: Color(0xFF374259),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        Positioned(
-          top: 220,
-          left: 20,
-          child: Container(
-            width: 180,
-            height: 35,
-            padding: EdgeInsets.all(5),
-            decoration: BoxDecoration(
-              color: Colors.yellow,
-              borderRadius: BorderRadius.circular(5),
-            ),
-            child: Text(
-              'ONE PIECE',
-              style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF374259),
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ),
-      ],
     );
   }
 
@@ -1113,5 +739,5 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
-  } 
+  }
 }

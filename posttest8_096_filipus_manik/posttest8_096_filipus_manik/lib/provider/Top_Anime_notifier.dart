@@ -23,15 +23,13 @@ class TopAnimeNotifier with ChangeNotifier {
   void getAnimeTop() async {
     state = ProviderState.loading;
     try {
-      print("masuk");
       final result = await repositories.getAnimeTopList();
       if (result is AnimeResponses) {
-        print(result);
         result.data?.forEach((element) {
           final imagePath = element.images["jpg"]?["image_url"] ?? "";
           _Topanime.add(Anime(
             id: element.malId != null ? element.malId.toString()  : "",
-            Judul: element.title ?? "",
+            judul: element.title ?? "",
             Rating: element.score.toString(),
             Tipe: "",
             Episode: element.episodes.toString(),

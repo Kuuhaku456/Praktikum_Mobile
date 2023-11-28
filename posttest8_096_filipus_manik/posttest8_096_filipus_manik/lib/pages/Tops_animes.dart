@@ -114,9 +114,9 @@ class _TopsAnimeViewState extends State<TopsAnimeView> {
 
   @override
   Widget build(BuildContext context) {
-    Color containerColor = isTapped ? Colors.grey : Color(0xFF374259);
-    Color textColor = isTapped ? Colors.yellow : Colors.yellow;
-    Color iconColor = isTapped ? Colors.yellow : Colors.yellow;
+    // Color containerColor = isTapped ? Colors.grey : Color(0xFF374259);
+    // Color textColor = isTapped ? Colors.yellow : Colors.yellow;
+    // Color iconColor = isTapped ? Colors.yellow : Colors.yellow;
     var Lebar = MediaQuery.of(context).size.width;
     var Tinggi = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -140,7 +140,7 @@ class _TopsAnimeViewState extends State<TopsAnimeView> {
                   itemBuilder: (context, index) {
                     return MyanimeCard(
                       index: index,
-                      title: provider.getAnime[index].Judul,
+                      title: provider.getAnime[index].judul,
                       imagePath: provider.getAnime[index].imagePath,  
                       rating: provider.getAnime[index].Rating,
                       episode: provider.getAnime[index].Episode,

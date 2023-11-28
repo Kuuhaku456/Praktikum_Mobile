@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "216071700151",
+    "project_id": "projectakhirmobile-d1c72",
+    "storage_bucket": "projectakhirmobile-d1c72.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:216071700151:android:f15159b0f9d8a8163e1732",
+        "android_client_info": {
+          "package_name": "com.example.posttest5_096_filipus_manik"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBx8i4xBkAxz9GtDH3GYxxoK0MZuXRt1BI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

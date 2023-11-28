@@ -44,6 +44,8 @@ dependencies:
   json_annotation: ^4.8.1
   cached_network_image: ^3.3.0
   auto_size_text: 
+  firebase_core: 
+  ionicons: 
 
 dev_dependencies:
   flutter_lints: ^3.0.0
@@ -68,6 +70,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - assets/
+    - assets/icon/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see

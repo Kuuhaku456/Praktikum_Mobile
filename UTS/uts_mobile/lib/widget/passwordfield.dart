@@ -25,7 +25,7 @@ class _MyPasswordFieldState extends State<MyPasswordField> {
           width: 350,
           height: 70,
           decoration: BoxDecoration(
-            color: Colors.grey,
+            color: Colors.grey[300],
             borderRadius: BorderRadius.circular(40),
           ),
           child: TextFormField(

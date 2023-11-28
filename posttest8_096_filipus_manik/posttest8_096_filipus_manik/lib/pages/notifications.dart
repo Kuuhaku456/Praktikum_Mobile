@@ -15,7 +15,7 @@ class _MyNotificationState extends State<MyNotification> {
     return  Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF374259),
-        title: Text(
+        title: const Text(
           'MyNotification'
           ),
           centerTitle: true,

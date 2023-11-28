@@ -5,6 +5,7 @@ import 'package:posttest5_096_filipus_manik/pages/Home_Page.dart';
 import 'package:posttest5_096_filipus_manik/pages/Schedule.dart';
 import 'package:posttest5_096_filipus_manik/pages/Top_Anime.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:posttest5_096_filipus_manik/pages/profile.dart';
 import 'package:posttest5_096_filipus_manik/provider/Top_Anime_notifier.dart';
 import 'package:provider/provider.dart';
 
@@ -18,11 +19,11 @@ class Screen extends StatefulWidget {
 class _ScreenState extends State<Screen> {
   int indexs = 0;
 
-  final List<Widget> Page = [
+  final List<Widget> page = [
     HomePage(),
-    JadwalTayang(),
-    Top_anime(),
-    AboutUsPage(),
+    const JadwalTayang(),
+    const Top_anime(),
+    const MyProfile(),
   ];
 
   void itemTapped(int index) {
@@ -42,12 +43,12 @@ class _ScreenState extends State<Screen> {
     return Scaffold(
       backgroundColor: Color(0xFF374259),
       body: Center(
-        child: Page.elementAt(indexs),
+        child: page.elementAt(indexs),
       ),
       bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Color(0xFF374259),
+        backgroundColor:const Color(0xFF374259),
         color: Colors.grey.shade400.withAlpha(128),
-        items: [
+        items: const [
           Icon(
             Icons.home,
             size: 20,

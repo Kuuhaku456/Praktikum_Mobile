@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:uts_mobile/pages/sign_in.dart';
+import 'package:uts_mobile/pages/sign_up.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
@@ -73,7 +73,7 @@ class LandingPage extends StatelessWidget {
 
 Route _createRoute() {
   return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => const SignIn(),
+    pageBuilder: (context, animation, secondaryAnimation) => const SignUp(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(0.0, 1.0);
       const end = Offset.zero;

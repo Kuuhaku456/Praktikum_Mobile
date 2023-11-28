@@ -24,15 +24,14 @@ class MyintroductionContainer extends StatefulWidget {
 class _MyintroductionContainerState extends State<MyintroductionContainer> {
   @override
   Widget build(BuildContext context) {
-    var Lebar = MediaQuery.of(context).size.width;
-    var Tinggi = MediaQuery.of(context).size.height;
+    var lebar = MediaQuery.of(context).size.width;
     return Column(
         children: [
-          SizedBox(height: 70),
+          const SizedBox(height: 70),
             Container(
-              width: Lebar,
+              width: lebar,
               height: 100,
-              padding: EdgeInsets.only(left: 10),
+              padding: const EdgeInsets.only(left: 10),
               child: Text(
                 '${widget.title}',
                 style: GoogleFonts.poppins(
@@ -43,7 +42,7 @@ class _MyintroductionContainerState extends State<MyintroductionContainer> {
               ),
             ),
           Container(
-            width: Lebar,
+            width: lebar,
             height: 500,
             margin: EdgeInsets.fromLTRB(10, 0, 10, 100),
             decoration: BoxDecoration(
@@ -61,7 +60,7 @@ class _MyintroductionContainerState extends State<MyintroductionContainer> {
             child: Column(
               children: [
                 Container(
-                  width: Lebar,
+                  width: lebar,
                   height: 325,
                   decoration: BoxDecoration(
                     color: Colors.red,
@@ -74,7 +73,7 @@ class _MyintroductionContainerState extends State<MyintroductionContainer> {
                   ),
                 ),
                 Container(
-                  width: Lebar,
+                  width: lebar,
                   height: 175,
                   padding: EdgeInsets.only(left: 10, top: 10, right: 10),
                   decoration: BoxDecoration(
@@ -92,7 +91,7 @@ class _MyintroductionContainerState extends State<MyintroductionContainer> {
                           fontWeight: FontWeight.bold
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Text(
                         widget.desc,
                         style: GoogleFonts.poppins(

@@ -16,45 +16,21 @@ class Top_anime extends StatefulWidget {
 class _Top_animeState extends State<Top_anime> {
   @override
   Widget build(BuildContext context) {
-    var Lebar = MediaQuery.of(context).size.width;
-    var Tinggi = MediaQuery.of(context).size.height;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: DefaultTabController(
-        length: 3,
-        child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: Color(0xFF374259),
-            title: Text(
-              'TOP CHARTS',
-              style: GoogleFonts.poppins(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.yellow
-              )
-            ),
-            centerTitle: true,
-            bottom: TabBar(              
-              labelColor: Colors.yellow,
-              dividerColor: Colors.yellow,
-              tabs: [
-                Tab(text: 'ANIME'),
-                Tab(text: 'MANGA'),
-                Tab(text: 'MUSIC'),
-              ],
-            ),
+      home: Scaffold(
+        appBar: AppBar(
+          backgroundColor:const  Color(0xFF374259),
+          title: Text(
+            'TOP CHARTS',
+            style: GoogleFonts.poppins(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Colors.yellow
+            )
           ),
-          body: Container(
-            height: 700,
-            child: TabBarView(
-              children: [
-                TopsAnimes(),
-                TopsManga(),
-                TopsMusic()
-              ],
-            ),
-          ),
-        ),
+      ),
+        body: TopsAnimes(),
       ),
     );
   }

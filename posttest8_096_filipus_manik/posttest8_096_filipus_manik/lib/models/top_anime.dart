@@ -1,6 +1,6 @@
 class Anime {
   String id;
-  String Judul;
+  String judul;
   String Rating;
   String Tipe;
   String Episode;
@@ -10,7 +10,7 @@ class Anime {
 
   Anime({
     required this.id,
-    required this.Judul,
+    required this.judul,
     required this.Rating,
     required this.Tipe,
     required this.Episode,
