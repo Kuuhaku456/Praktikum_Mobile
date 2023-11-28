@@ -9,6 +9,7 @@ import 'package:posttest5_096_filipus_manik/pages/detail_anime.dart';
 import 'package:posttest5_096_filipus_manik/pages/notifications.dart';
 import 'package:posttest5_096_filipus_manik/pages/signinpage.dart';
 import 'package:posttest5_096_filipus_manik/widget/anime_cards.dart';
+import 'package:posttest5_096_filipus_manik/widget/slide_item.dart';
 
 class HomePage extends StatefulWidget {
   final id;
@@ -31,198 +32,21 @@ class _HomePageState extends State<HomePage> {
 
   int _currentIndex = 0;
   final List<Widget> _slides = [
-    Container(
-      width: 500,
-      height: 200,
-      decoration: BoxDecoration(
-        color: Colors.green,
-        borderRadius: BorderRadius.circular(10),
-        image: DecorationImage(
-          image: AssetImage('assets/one_piece.jpg'),
-          filterQuality: FilterQuality.low,
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Stack(
-        children: [
-          Positioned(
-            top: 125,
-            child: Container(
-              width: 330,
-              height: 50,
-              decoration: BoxDecoration(
-                color: Color(0xFF374259).withOpacity(0.7),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    'One Piece',
-                    style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.yellow),
-                  ),
-                  Container(
-                    width: 70,
-                    height: 25,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Icon(
-                          Icons.star,
-                          size: 20,
-                          color: Colors.yellow,
-                        ),
-                        Text(
-                          '8.45',
-                          style: TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.yellow),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    ),
-    Container(
-      width: 500,
-      height: 200,
-      decoration: BoxDecoration(
-        color: Colors.green,
-        borderRadius: BorderRadius.circular(10),
-        image: DecorationImage(
-          image: AssetImage('assets/mushoku_tensei.jpeg'),
-          filterQuality: FilterQuality.medium,
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Stack(
-        children: [
-          Positioned(
-            top: 125,
-            child: Container(
-              width: 330,
-              height: 50,
-              decoration: BoxDecoration(
-                color: Color(0xFF374259).withOpacity(0.7),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    'Mushoku Tensei',
-                    style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.yellow),
-                  ),
-                  Container(
-                    width: 70,
-                    height: 25,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Icon(
-                          Icons.star,
-                          size: 20,
-                          color: Colors.yellow,
-                        ),
-                        Text(
-                          '8.88',
-                          style: TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.yellow),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    ),
-    Container(
-      width: 500,
-      height: 200,
-      decoration: BoxDecoration(
-        color: Colors.green,
-        borderRadius: BorderRadius.circular(10),
-        image: DecorationImage(
-          image: AssetImage('assets/gotoubun.jpg'),
-          filterQuality: FilterQuality.medium,
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Stack(
-        children: [
-          Positioned(
-            top: 125,
-            child: Container(
-              width: 330,
-              height: 50,
-              decoration: BoxDecoration(
-                color: Color(0xFF374259).withOpacity(0.7),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    'Gotoubun No Hanayome',
-                    style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.yellow),
-                  ),
-                  Container(
-                    width: 70,
-                    height: 25,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Icon(
-                          Icons.star,
-                          size: 20,
-                          color: Colors.yellow,
-                        ),
-                        Text(
-                          '7.89',
-                          style: TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.yellow),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    ),
+    MySlideItem(
+        onTap: () {},
+        rating: 8.45,
+        title: 'One Piece',
+        imagePath: 'assets/one_piece.jpg'),
+    MySlideItem(
+        onTap: () {},
+        rating: 8.88,
+        title: 'Mushoku Tensei',
+        imagePath: 'assets/mushoku_tensei.jpeg'),
+    MySlideItem(
+        onTap: () {},
+        rating: 8.88,
+        title: 'Gotoubun No Hanayome',
+        imagePath: 'assets/gotoubun.jpg'),
   ];
   List animeList = Animes.animeList;
   @override
@@ -240,9 +64,9 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         leading: GestureDetector(
           onTap: () => Navigator.of(context)
-                .push(CupertinoPageRoute(builder: (BuildContext context) {
-              return const MySigninPage();
-            })),
+              .push(CupertinoPageRoute(builder: (BuildContext context) {
+            return const MySigninPage();
+          })),
           child: Container(
             margin: EdgeInsets.all(10),
             alignment: Alignment.center,
@@ -295,7 +119,7 @@ class _HomePageState extends State<HomePage> {
               SizedBox(height: 20),
               Center(
                 child: Text(
-                  'TOP AIRING',
+                  'CURRENT AIRING',
                   style: TextStyle(
                       fontFamily: 'Poppins',
                       fontSize: 30,
@@ -337,9 +161,8 @@ class _HomePageState extends State<HomePage> {
                     for (int index = 0; index < animeList.length; index++)
                       MyAnimeCards(
                         onTap: () => Navigator.of(context).push(
-                            CupertinoPageRoute(
-                              builder: (BuildContext context) {
-                                return MyAnimeDetails(id: animeList[index].id);
+                            CupertinoPageRoute(builder: (BuildContext context) {
+                          return MyAnimeDetails(id: animeList[index].id);
                         })),
                         rating: animeList[index].rating,
                         title: animeList[index].judul,

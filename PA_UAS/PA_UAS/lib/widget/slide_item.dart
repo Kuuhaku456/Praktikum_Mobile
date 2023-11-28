@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 class MySlideItem extends StatefulWidget {
   final Function()? onTap;
   final String ? title;
-  final int ? rating;
+  final double ? rating;
+  final String ? imagePath;
   const MySlideItem(
     {
       super.key,
       required this.onTap,
       required this.rating,
       required this.title,
+      required this.imagePath,
     }
   );
 
@@ -21,7 +23,7 @@ class _MySlideItemState extends State<MySlideItem> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: widget.onTap,
       child: Container(
         width: 500,
         height: 200,
@@ -29,7 +31,7 @@ class _MySlideItemState extends State<MySlideItem> {
           color: Colors.green,
           borderRadius: BorderRadius.circular(10),
           image: DecorationImage(
-            image: AssetImage('assets/one_piece.jpg'),
+            image: AssetImage(widget.imagePath.toString()),
             filterQuality: FilterQuality.low,
             fit: BoxFit.cover,
           ),
@@ -50,8 +52,8 @@ class _MySlideItemState extends State<MySlideItem> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      'One Piece',
-                      style: TextStyle(
+                      widget.title.toString(),
+                      style: const TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -62,15 +64,15 @@ class _MySlideItemState extends State<MySlideItem> {
                       height: 25,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
+                        children:  [
                           Icon(
                             Icons.star,
                             size: 20,
                             color: Colors.yellow,
                           ),
                           Text(
-                            '8.45',
-                            style: TextStyle(
+                            widget.rating.toString(),
+                            style: const TextStyle(
                                 fontFamily: 'Poppins',
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
