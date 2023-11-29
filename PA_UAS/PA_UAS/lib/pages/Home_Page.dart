@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jikan_api/jikan_api.dart';
 import 'package:posttest5_096_filipus_manik/models/anime.dart';
 import 'package:posttest5_096_filipus_manik/pages/Favorites.dart';
 import 'package:posttest5_096_filipus_manik/pages/detail_anime.dart';
@@ -100,7 +99,7 @@ class _HomePageState extends State<HomePage> {
             ),
             onPressed: () => Navigator.of(context)
                 .push(CupertinoPageRoute(builder: (BuildContext context) {
-              return const HomePage();
+              return const Favorites();
             })),
             disabledColor: const Color(0xFF374259),
           ),
