@@ -1,7 +1,9 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:posttest5_096_filipus_manik/pages/signinpage.dart';
 import 'package:posttest5_096_filipus_manik/widget/Button.dart';
+import 'package:posttest5_096_filipus_manik/widget/customsnackbar.dart';
 import 'package:posttest5_096_filipus_manik/widget/passwordtextfield.dart';
 import 'package:posttest5_096_filipus_manik/widget/textfield.dart';
 
@@ -16,11 +18,23 @@ class MySignUpPage extends StatefulWidget {
 
 class _MySignUpPageState extends State<MySignUpPage> {
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController firstnameController = TextEditingController();
-  final TextEditingController lastnameController = TextEditingController();
-  final TextEditingController phonenumberController = TextEditingController();
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  void showSnackbar(BuildContext context, String? title, String? message,
+      String? type, Color? backgroundColor) {
+    final snackbar = SnackBar(
+      elevation: 0,
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: Colors.transparent,
+      content: MyCustomSnackbar(
+          title: title,
+          message: message,
+          type: type,
+          backgroundColor: backgroundColor),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackbar);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,7 +101,7 @@ class _MySignUpPageState extends State<MySignUpPage> {
                   ),
                   const SizedBox(width: 10),
                   Padding(
-                    padding: const EdgeInsets.only(left:10),
+                    padding: const EdgeInsets.only(left: 10),
                     child: Text.rich(
                       TextSpan(children: [
                         TextSpan(
@@ -133,6 +147,12 @@ class _MySignUpPageState extends State<MySignUpPage> {
                 padding: const EdgeInsets.only(left: 15),
                 child: MyButton(
                     onTap: () {
+                      showSnackbar(
+                          context,
+                          'Berhasil!',
+                          'Selamat Anda berhasil SignUp, Silahkan login terlebih dahulu!',
+                          'Succes',
+                          DefaultColors.successGreen);
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
@@ -174,7 +194,7 @@ class _MySignUpPageState extends State<MySignUpPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left:15.0),
+                padding: const EdgeInsets.only(left: 15.0),
                 child: Column(
                   children: [
                     MyImageButton(

@@ -1,5 +1,5 @@
 class Anime {
-  String id;
+  int id;
   String judul;
   String Rating;
   String Tipe;

@@ -8,6 +8,8 @@ import 'package:posttest5_096_filipus_manik/pages/detail_anime.dart';
 import 'package:posttest5_096_filipus_manik/pages/notifications.dart';
 import 'package:posttest5_096_filipus_manik/pages/signinpage.dart';
 import 'package:posttest5_096_filipus_manik/widget/anime_cards.dart';
+import 'package:posttest5_096_filipus_manik/widget/genrebutton.dart';
+import 'package:posttest5_096_filipus_manik/widget/seasons_button.dart';
 import 'package:posttest5_096_filipus_manik/widget/slide_item.dart';
 
 class HomePage extends StatefulWidget {
@@ -220,285 +222,36 @@ class _HomePageState extends State<HomePage> {
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: [
-          Container(
-            height: 120.0,
-            width: 120.0,
-            margin: EdgeInsets.only(left: 10, right: 10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  width: 70.0,
-                  height: 70.0,
-                  decoration: BoxDecoration(
-                    color: Colors.amber,
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                        image: AssetImage('assets/kny.png'),
-                        filterQuality: FilterQuality.low,
-                        fit: BoxFit.cover),
-                  ),
-                ),
-                Text(
-                  'ACTION',
-                  style: TextStyle(
-                    color: Color(0xFF374259),
-                    fontSize: 20,
-                  ),
-                ),
-              ],
-            ),
-            decoration: BoxDecoration(
-              color: Colors.yellow,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.black,
-                    blurRadius: 10,
-                    spreadRadius: 1,
-                    offset: Offset(2, 2)),
-              ],
-            ),
+          MyGenreButton(
+              onTap: () {}, imagePath: 'assets/kny.png', title: 'ACTION'),
+          MyGenreButton(
+              onTap: () {},
+              imagePath: 'assets/one_piece.jpg',
+              title: 'ADVENTURE'),
+          MyGenreButton(
+            onTap: () {},
+            imagePath: 'assets/junji_ito.jpg',
+            title: 'HORROR',
           ),
-          Container(
-            height: 120.0,
-            width: 120.0,
-            margin: EdgeInsets.only(left: 10, right: 10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  width: 70.0,
-                  height: 70.0,
-                  decoration: BoxDecoration(
-                    color: Colors.amber,
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                        image: AssetImage('assets/one_piece.jpg'),
-                        filterQuality: FilterQuality.low,
-                        fit: BoxFit.cover),
-                  ),
-                ),
-                Text(
-                  'ADVENTURE',
-                  style: TextStyle(
-                    color: Color(0xFF374259),
-                    fontSize: 20,
-                  ),
-                ),
-              ],
-            ),
-            decoration: BoxDecoration(
-              color: Colors.yellow,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.black,
-                    blurRadius: 10,
-                    spreadRadius: 1,
-                    offset: Offset(2, 2)),
-              ],
-            ),
+          MyGenreButton(
+            onTap: () {},
+            imagePath: 'assets/shigatsu.jpg',
+            title: 'DRAMA',
           ),
-          Container(
-            height: 120.0,
-            width: 120.0,
-            margin: EdgeInsets.only(left: 10, right: 10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  width: 70.0,
-                  height: 70.0,
-                  decoration: BoxDecoration(
-                    color: Colors.amber,
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                        image: AssetImage('assets/junji_ito.jpg'),
-                        filterQuality: FilterQuality.low,
-                        fit: BoxFit.cover),
-                  ),
-                ),
-                Text(
-                  'HORROR',
-                  style: TextStyle(
-                    color: Color(0xFF374259),
-                    fontSize: 20,
-                  ),
-                ),
-              ],
-            ),
-            decoration: BoxDecoration(
-              color: Colors.yellow,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.black,
-                    blurRadius: 10,
-                    spreadRadius: 1,
-                    offset: Offset(2, 2)),
-              ],
-            ),
+          MyGenreButton(
+            onTap: () {},
+            imagePath: 'assets/mushoku_tensei.jpeg',
+            title: 'MAGIC',
           ),
-          Container(
-            height: 120.0,
-            width: 120.0,
-            margin: EdgeInsets.only(left: 10, right: 10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  width: 70.0,
-                  height: 70.0,
-                  decoration: BoxDecoration(
-                    color: Colors.amber,
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                        image: AssetImage('assets/shigatsu.jpg'),
-                        filterQuality: FilterQuality.low,
-                        fit: BoxFit.cover),
-                  ),
-                ),
-                Text(
-                  'DRAMA',
-                  style: TextStyle(
-                    color: Color(0xFF374259),
-                    fontSize: 20,
-                  ),
-                ),
-              ],
-            ),
-            decoration: BoxDecoration(
-              color: Colors.yellow,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.black,
-                    blurRadius: 10,
-                    spreadRadius: 1,
-                    offset: Offset(2, 2)),
-              ],
-            ),
+          MyGenreButton(
+            onTap: () {},
+            imagePath: 'assets/cs.jpg',
+            title: 'THRILLER',
           ),
-          Container(
-            height: 120.0,
-            width: 120.0,
-            margin: EdgeInsets.only(left: 10, right: 10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  width: 70.0,
-                  height: 70.0,
-                  decoration: BoxDecoration(
-                    color: Colors.amber,
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                        image: AssetImage('assets/mushoku_tensei.jpeg'),
-                        filterQuality: FilterQuality.low,
-                        fit: BoxFit.cover),
-                  ),
-                ),
-                Text(
-                  'MAGIC',
-                  style: TextStyle(
-                    color: Color(0xFF374259),
-                    fontSize: 20,
-                  ),
-                ),
-              ],
-            ),
-            decoration: BoxDecoration(
-              color: Colors.yellow,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.black,
-                    blurRadius: 10,
-                    spreadRadius: 1,
-                    offset: Offset(2, 2)),
-              ],
-            ),
-          ),
-          Container(
-            height: 120.0,
-            width: 120.0,
-            margin: EdgeInsets.only(left: 10, right: 10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  width: 70.0,
-                  height: 70.0,
-                  decoration: BoxDecoration(
-                    color: Colors.amber,
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                        image: AssetImage('assets/cs.jpg'),
-                        filterQuality: FilterQuality.low,
-                        fit: BoxFit.cover),
-                  ),
-                ),
-                Text(
-                  'THRILLER',
-                  style: TextStyle(
-                    color: Color(0xFF374259),
-                    fontSize: 20,
-                  ),
-                ),
-              ],
-            ),
-            decoration: BoxDecoration(
-              color: Colors.yellow,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.black,
-                    blurRadius: 10,
-                    spreadRadius: 1,
-                    offset: Offset(2, 2)),
-              ],
-            ),
-          ),
-          Container(
-            height: 120.0,
-            width: 120.0,
-            margin: EdgeInsets.only(left: 10, right: 10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  width: 70.0,
-                  height: 70.0,
-                  decoration: BoxDecoration(
-                    color: Colors.amber,
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                        image: AssetImage('assets/gotoubun.jpg'),
-                        filterQuality: FilterQuality.low,
-                        fit: BoxFit.cover),
-                  ),
-                ),
-                Text(
-                  'HAREM',
-                  style: TextStyle(
-                    color: Color(0xFF374259),
-                    fontSize: 20,
-                  ),
-                ),
-              ],
-            ),
-            decoration: BoxDecoration(
-              color: Colors.yellow,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.black,
-                    blurRadius: 10,
-                    spreadRadius: 1,
-                    offset: Offset(2, 2)),
-              ],
-            ),
+          MyGenreButton(
+            onTap: () {},
+            imagePath: 'assets/gotoubun.jpg',
+            title: 'HAREM',
           ),
         ],
       ),
@@ -507,16 +260,13 @@ class _HomePageState extends State<HomePage> {
 
   Padding Text_genre() {
     return Padding(
-      padding: EdgeInsets.only(left: 20),
-      child: Text(
-        'Genre',
-        style: TextStyle(
-          fontFamily: 'Poppins',
-          color: Colors.yellow,
-          fontSize: 30,
-          fontWeight: FontWeight.w600,
-        ),
-      ),
+      padding: const EdgeInsets.only(left: 10),
+      child: Text('Genre',
+          style: GoogleFonts.poppins(
+            fontSize: 25,
+            color: Colors.yellow,
+            fontWeight: FontWeight.w600,
+          )),
     );
   }
 

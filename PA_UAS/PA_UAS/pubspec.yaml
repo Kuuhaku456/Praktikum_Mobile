@@ -46,6 +46,7 @@ dependencies:
   auto_size_text: 
   firebase_core: 
   ionicons: 
+  awesome_snackbar_content: 
 
 dev_dependencies:
   flutter_lints: ^3.0.0

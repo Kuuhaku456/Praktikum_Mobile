@@ -11,8 +11,8 @@ enum ProviderState {
 }
 
 class TopAnimeNotifier with ChangeNotifier {
-  List<Anime> _Topanime = [];
-  List<Anime> get getAnime => _Topanime;
+  List<Anime> topAnime = [];
+  List<Anime> get getAnime => topAnime;
   
   final AnimeRepository repositories;
   ProviderState state = ProviderState.initialize;
@@ -27,8 +27,8 @@ class TopAnimeNotifier with ChangeNotifier {
       if (result is AnimeResponses) {
         result.data?.forEach((element) {
           final imagePath = element.images["jpg"]?["image_url"] ?? "";
-          _Topanime.add(Anime(
-            id: element.malId != null ? element.malId.toString()  : "",
+          topAnime.add(Anime(
+            id: element.malId != null ? element.malId  : 0,
             judul: element.title ?? "",
             Rating: element.score.toString(),
             Tipe: "",
@@ -36,7 +36,7 @@ class TopAnimeNotifier with ChangeNotifier {
             imagePath: imagePath,
           ));
         });
-        state = ProviderState.loaded;
+        state = ProviderState.loaded; 
         notifyListeners();
       }
     } catch (e) {

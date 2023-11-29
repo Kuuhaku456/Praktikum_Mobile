@@ -1,10 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:posttest5_096_filipus_manik/pages/Home_Page.dart';
 import 'package:posttest5_096_filipus_manik/pages/Screen.dart';
 import 'package:posttest5_096_filipus_manik/pages/signuppage.dart';
 import 'package:posttest5_096_filipus_manik/widget/Button.dart';
+import 'package:posttest5_096_filipus_manik/widget/customsnackbar.dart';
 import 'package:posttest5_096_filipus_manik/widget/imagebutton.dart';
 import 'package:posttest5_096_filipus_manik/widget/passwordtextfield.dart';
 import 'package:posttest5_096_filipus_manik/widget/textfield.dart';
@@ -19,6 +21,21 @@ class MySigninPage extends StatefulWidget {
 class _MySigninPageState extends State<MySigninPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  void showSnackbar(BuildContext context, String? title, String? message,
+      String? type, Color? backgroundColor) {
+    final snackbar = SnackBar(
+      elevation: 0,
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: Colors.transparent,
+      content: MyCustomSnackbar(
+          title: title,
+          message: message,
+          type: type,
+          backgroundColor: backgroundColor),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackbar);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,6 +115,12 @@ Anime Here!''',
                 Center(
                   child: MyButton(
                       onTap: () {
+                        showSnackbar(
+                            context,
+                            'Berhasil!',
+                            'Selamat Anda berhasil Sign In',
+                            'Succes',
+                            DefaultColors.successGreen);
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
