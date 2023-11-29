@@ -66,6 +66,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '216071700151',
     projectId: 'projectakhirmobile-d1c72',
     storageBucket: 'projectakhirmobile-d1c72.appspot.com',
+    iosClientId: '216071700151-qondsf7qo05t30rio6gv1ktop9rsmt62.apps.googleusercontent.com',
     iosBundleId: 'com.example.posttest5096FilipusManik',
   );
 
@@ -75,6 +76,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '216071700151',
     projectId: 'projectakhirmobile-d1c72',
     storageBucket: 'projectakhirmobile-d1c72.appspot.com',
+    iosClientId: '216071700151-gjhfj5igl7eef20t3olh73e8u7t1t0s1.apps.googleusercontent.com',
     iosBundleId: 'com.example.posttest5096FilipusManik.RunnerTests',
   );
 }

@@ -12,7 +12,12 @@
           "package_name": "com.example.posttest5_096_filipus_manik"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "216071700151-10nahslue6q8vm7gb05chtr2gggl8t9d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBx8i4xBkAxz9GtDH3GYxxoK0MZuXRt1BI"
@@ -20,7 +25,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "216071700151-10nahslue6q8vm7gb05chtr2gggl8t9d.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "216071700151-gjhfj5igl7eef20t3olh73e8u7t1t0s1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.posttest5096FilipusManik.RunnerTests"
+              }
+            }
+          ]
         }
       }
     }
