@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:posttest5_096_filipus_manik/main.dart';
 import 'package:posttest5_096_filipus_manik/models/anime_card.dart';
@@ -18,7 +17,7 @@ class TopsAnimes extends StatelessWidget {
     return 
     ChangeNotifierProvider( 
       create: (_) => TopAnimeNotifier(repositories: getIt.get<AnimeRepository>()),
-      child: TopsAnimeView(),
+      child: const TopsAnimeView(),
     );
   }
 }
@@ -39,7 +38,7 @@ class _TopsAnimeViewState extends State<TopsAnimeView> {
       });
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          backgroundColor: Color(0xFF374259),
+          backgroundColor: const Color(0xFF374259),
           content: Text(
             'Anime telah di-unfavorit',
             style: GoogleFonts.poppins(color: Colors.yellow, fontSize: 15),
@@ -51,13 +50,13 @@ class _TopsAnimeViewState extends State<TopsAnimeView> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text('Tambahkan ke Favorit?'),
+            title:  const Text('Tambahkan ke Favorit?'),
             actions: <Widget>[
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text('Cancel'),
+                child: const Text('Cancel'),
               ),
               TextButton(
                 onPressed: () {
@@ -68,7 +67,7 @@ class _TopsAnimeViewState extends State<TopsAnimeView> {
                   Navigator.of(context).pop();
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      backgroundColor: Color(0xFF374259),
+                      backgroundColor:const  Color(0xFF374259),
                       content: Row(
                         children: [
                           Text(
@@ -99,7 +98,7 @@ class _TopsAnimeViewState extends State<TopsAnimeView> {
     }
   }
 
-  void _handleTap() {
+  void handleTap() {
     setState(() {
       isTapped = !isTapped; // Toggle nilai ketika tombol ditekan.
     });
@@ -114,23 +113,31 @@ class _TopsAnimeViewState extends State<TopsAnimeView> {
 
   @override
   Widget build(BuildContext context) {
-    // Color containerColor = isTapped ? Colors.grey : Color(0xFF374259);
-    // Color textColor = isTapped ? Colors.yellow : Colors.yellow;
-    // Color iconColor = isTapped ? Colors.yellow : Colors.yellow;
-    var Lebar = MediaQuery.of(context).size.width;
-    var Tinggi = MediaQuery.of(context).size.height;
+    var lebar = MediaQuery.of(context).size.width;
+    var tinggi = MediaQuery.of(context).size.height;
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'TOP CHARTS',
+          style: GoogleFonts.poppins(
+            fontSize: 25,
+            color: Colors.yellow,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        backgroundColor: const Color(0xFF374259),
+      ),
       body: Container(
-        width: Lebar,
+        width: lebar,
         height: 800,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color(0xFF374259),
         ),
-        child: Container(
-          width: Lebar,
-          height: Tinggi,
-          child: Container(
-            width: Lebar,
+        child: SizedBox(
+          width: lebar,
+          height: tinggi,
+          child: SizedBox(
+            width: lebar,
             height: 900,
             child: Consumer<TopAnimeNotifier>(
               builder: (context, provider, child) {
@@ -155,7 +162,7 @@ class _TopsAnimeViewState extends State<TopsAnimeView> {
                 });
               }
               else if(provider.state == ProviderState.loading){
-                return Center(child: CircularProgressIndicator());
+                return const Center(child: CircularProgressIndicator());
               }
               return Text(
                 'Kosong',

@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:posttest5_096_filipus_manik/pages/About_us.dart';
 import 'package:posttest5_096_filipus_manik/pages/Home_Page.dart';
 import 'package:posttest5_096_filipus_manik/pages/Schedule.dart';
-import 'package:posttest5_096_filipus_manik/pages/Top_Anime.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:posttest5_096_filipus_manik/pages/Tops_animes.dart';
 import 'package:posttest5_096_filipus_manik/pages/profile.dart';
-import 'package:posttest5_096_filipus_manik/provider/Top_Anime_notifier.dart';
-import 'package:provider/provider.dart';
 
 class Screen extends StatefulWidget {
   const Screen({super.key});
@@ -20,9 +17,9 @@ class _ScreenState extends State<Screen> {
   int indexs = 0;
 
   final List<Widget> page = [
-    HomePage(),
+    const HomePage(),
     const JadwalTayang(),
-    const Top_anime(),
+    const TopsAnimes(),
     const MyProfile(),
   ];
 

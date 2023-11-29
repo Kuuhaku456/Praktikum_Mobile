@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:posttest5_096_filipus_manik/widget/Button.dart';
+import 'package:posttest5_096_filipus_manik/widget/button_bulat.dart';
 
 class MyProfile extends StatefulWidget {
   const MyProfile({super.key});
@@ -53,6 +54,14 @@ class _MyProfileState extends State<MyProfile> {
                           image: AssetImage('assets/logo-wallpaper.jpeg'),
                           fit: BoxFit.cover,
                         )),
+                  ),
+                ),
+                Positioned(
+                  top: 20,
+                  right: 20,
+                  child: MyCircleButton(
+                    icon: Icons.favorite,
+                    onPressed: () {},
                   ),
                 ),
               ],

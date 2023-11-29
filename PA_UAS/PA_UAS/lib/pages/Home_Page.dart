@@ -5,11 +5,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:posttest5_096_filipus_manik/models/anime.dart';
 import 'package:posttest5_096_filipus_manik/pages/Favorites.dart';
 import 'package:posttest5_096_filipus_manik/pages/detail_anime.dart';
-import 'package:posttest5_096_filipus_manik/pages/notifications.dart';
+import 'package:posttest5_096_filipus_manik/pages/genre_page.dart';
 import 'package:posttest5_096_filipus_manik/pages/signinpage.dart';
 import 'package:posttest5_096_filipus_manik/widget/anime_cards.dart';
 import 'package:posttest5_096_filipus_manik/widget/genrebutton.dart';
-import 'package:posttest5_096_filipus_manik/widget/seasons_button.dart';
+import 'package:posttest5_096_filipus_manik/widget/gridview_card.dart';
 import 'package:posttest5_096_filipus_manik/widget/slide_item.dart';
 
 class HomePage extends StatefulWidget {
@@ -52,11 +52,11 @@ class _HomePageState extends State<HomePage> {
   List animeList = Animes.animeList;
   @override
   Widget build(BuildContext context) {
-    var Lebar = MediaQuery.of(context).size.width;
-    var Tinggi = MediaQuery.of(context).size.height;
+    var lebar = MediaQuery.of(context).size.width;
+    var tinggi = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF374259),
+        backgroundColor: const Color(0xFF374259),
         title: Text('CrunchRyoll',
             style: GoogleFonts.poppins(
                 color: Colors.yellow,
@@ -69,10 +69,10 @@ class _HomePageState extends State<HomePage> {
             return const MySigninPage();
           })),
           child: Container(
-            margin: EdgeInsets.all(10),
+            margin: const EdgeInsets.all(10),
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              image: DecorationImage(
+              image: const DecorationImage(
                 image: NetworkImage(
                     'https://avatars.githubusercontent.com/Kuuhaku456'),
               ),
@@ -81,18 +81,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         actions: [
-          CupertinoButton(
-            child: Icon(
-              Icons.notifications,
-              size: 30,
-              color: Colors.yellow,
-            ),
-            onPressed: () => Navigator.of(context)
-                .push(CupertinoPageRoute(builder: (BuildContext context) {
-              return MyNotification();
-            })),
-            disabledColor: Color(0xFF374259),
-          ),
           CupertinoButton(
             child: Icon(
               Icons.favorite,
@@ -108,17 +96,17 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: Container(
-        width: Lebar,
-        height: Tinggi,
-        decoration: BoxDecoration(
+        width: lebar,
+        height: tinggi,
+        decoration: const BoxDecoration(
           color: Color(0xFF374259),
         ),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 20),
-              Center(
+              const SizedBox(height: 20),
+              const Center(
                 child: Text(
                   'CURRENT AIRING',
                   style: TextStyle(
@@ -129,7 +117,7 @@ class _HomePageState extends State<HomePage> {
                   textAlign: TextAlign.center,
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               CarouselSlider(
                 items: _slides,
                 options: CarouselOptions(
@@ -138,8 +126,8 @@ class _HomePageState extends State<HomePage> {
                   enableInfiniteScroll: true,
                   reverse: false,
                   autoPlay: true,
-                  autoPlayInterval: Duration(seconds: 5),
-                  autoPlayAnimationDuration: Duration(milliseconds: 800),
+                  autoPlayInterval: const Duration(seconds: 5),
+                  autoPlayAnimationDuration: const Duration(milliseconds: 800),
                   autoPlayCurve: Curves.fastOutSlowIn,
                   enlargeCenterPage: true,
                   onPageChanged: (index, reason) {
@@ -151,11 +139,87 @@ class _HomePageState extends State<HomePage> {
               ),
               search_field(),
               Text_genre(),
-              genre_section(Lebar),
-              recommendation_text(),
+              SizedBox(
+                width: lebar,
+                height: 150,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    MyGenreButton(
+                        onTap: () {
+                          () => Navigator.of(context).push(CupertinoPageRoute(
+                                  builder: (BuildContext context) {
+                                return const MyGenrePage();
+                              }));
+                        },
+                        imagePath: 'assets/kny.png',
+                        title: 'ACTION'),
+                    MyGenreButton(
+                        onTap: () {
+                          () => Navigator.of(context).push(CupertinoPageRoute(
+                                  builder: (BuildContext context) {
+                                return const MyGenrePage();
+                              }));
+                        },
+                        imagePath: 'assets/one_piece.jpg',
+                        title: 'ADVENTURE'),
+                    MyGenreButton(
+                      onTap: () {
+                        () => Navigator.of(context).push(CupertinoPageRoute(
+                                builder: (BuildContext context) {
+                              return const MyGenrePage();
+                            }));
+                      },
+                      imagePath: 'assets/junji_ito.jpg',
+                      title: 'HORROR',
+                    ),
+                    MyGenreButton(
+                      onTap: () {
+                        () => Navigator.of(context).push(CupertinoPageRoute(
+                                builder: (BuildContext context) {
+                              return const MyGenrePage();
+                            }));
+                      },
+                      imagePath: 'assets/shigatsu.jpg',
+                      title: 'DRAMA',
+                    ),
+                    MyGenreButton(
+                      onTap: () {
+                        () => Navigator.of(context).push(CupertinoPageRoute(
+                                builder: (BuildContext context) {
+                              return const MyGenrePage();
+                            }));
+                      },
+                      imagePath: 'assets/mushoku_tensei.jpeg',
+                      title: 'MAGIC',
+                    ),
+                    MyGenreButton(
+                      onTap: () {
+                        () => Navigator.of(context).push(CupertinoPageRoute(
+                                builder: (BuildContext context) {
+                              return const MyGenrePage();
+                            }));
+                      },
+                      imagePath: 'assets/cs.jpg',
+                      title: 'THRILLER',
+                    ),
+                    MyGenreButton(
+                      onTap: () {
+                        () => Navigator.of(context).push(CupertinoPageRoute(
+                                builder: (BuildContext context) {
+                              return const MyGenrePage();
+                            }));
+                      },
+                      imagePath: 'assets/gotoubun.jpg',
+                      title: 'HAREM',
+                    ),
+                  ],
+                ),
+              ),
+              recommendationText(),
               SizedBox(
                 width: double.infinity,
-                height: 300,
+                height: 290,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
@@ -171,6 +235,40 @@ class _HomePageState extends State<HomePage> {
                       )
                   ],
                 ),
+              ),
+              Center(
+                child: Text(
+                  'ALL ANIMES',
+                  style: GoogleFonts.poppins(
+                    fontSize: 30,
+                    color: Colors.yellow,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+                child: GridView(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 15,
+                      crossAxisSpacing: 15,
+                      mainAxisExtent: 220),
+                  children: [
+                    for (int index = 0; index < animeList.length; index++)
+                      MyGridViewCard(
+                        judul: animeList[index].judul,
+                        onTap: () => Navigator.of(context).push(
+                            CupertinoPageRoute(builder: (BuildContext context) {
+                          return MyAnimeDetails(id: animeList[index].id);
+                        })),
+                        rating: animeList[index].rating,
+                        imagePath: animeList[index].imagePath,
+                      ),
+                  ],
+                ),
               )
             ],
           ),
@@ -179,13 +277,13 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Padding recommendation_text() {
+  Padding recommendationText() {
     return Padding(
-      padding: EdgeInsets.only(left: 10, top: 20),
+      padding: const EdgeInsets.only(left: 10, top: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Text(
+          const Text(
             'Recommendation',
             style: TextStyle(
               fontFamily: 'Poppins',
@@ -194,11 +292,11 @@ class _HomePageState extends State<HomePage> {
               fontWeight: FontWeight.w600,
             ),
           ),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           ElevatedButton.icon(
             onPressed: () {},
-            label: Text('Lihat Semua'),
-            icon: Icon(Icons.arrow_right_alt_sharp),
+            label: const Text('Lihat Semua'),
+            icon: const Icon(Icons.arrow_right_alt_sharp),
             style: ElevatedButton.styleFrom(
               primary: Color(0xFF374259), // Warna latar belakang tombol
               onPrimary: Colors.yellow, // Warna teks pada tombol
@@ -206,52 +304,9 @@ class _HomePageState extends State<HomePage> {
                 borderRadius:
                     BorderRadius.circular(10), // Mengatur sudut tombol
               ),
-              minimumSize: Size(50, 50),
+              minimumSize: const Size(50, 50),
               elevation: 0.0, // Ukuran minimum tombol
             ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Container genre_section(double Lebar) {
-    return Container(
-      width: Lebar,
-      height: 150,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: [
-          MyGenreButton(
-              onTap: () {}, imagePath: 'assets/kny.png', title: 'ACTION'),
-          MyGenreButton(
-              onTap: () {},
-              imagePath: 'assets/one_piece.jpg',
-              title: 'ADVENTURE'),
-          MyGenreButton(
-            onTap: () {},
-            imagePath: 'assets/junji_ito.jpg',
-            title: 'HORROR',
-          ),
-          MyGenreButton(
-            onTap: () {},
-            imagePath: 'assets/shigatsu.jpg',
-            title: 'DRAMA',
-          ),
-          MyGenreButton(
-            onTap: () {},
-            imagePath: 'assets/mushoku_tensei.jpeg',
-            title: 'MAGIC',
-          ),
-          MyGenreButton(
-            onTap: () {},
-            imagePath: 'assets/cs.jpg',
-            title: 'THRILLER',
-          ),
-          MyGenreButton(
-            onTap: () {},
-            imagePath: 'assets/gotoubun.jpg',
-            title: 'HAREM',
           ),
         ],
       ),

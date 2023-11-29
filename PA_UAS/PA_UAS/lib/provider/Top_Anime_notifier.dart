@@ -40,7 +40,6 @@ class TopAnimeNotifier with ChangeNotifier {
         notifyListeners();
       }
     } catch (e) {
-      print(e.toString());
       state = ProviderState.error;
       notifyListeners();
     }

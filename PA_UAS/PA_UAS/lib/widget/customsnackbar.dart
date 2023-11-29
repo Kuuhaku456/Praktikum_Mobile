@@ -26,7 +26,6 @@ class _MyCustomSnackbarState extends State<MyCustomSnackbar> {
     return AwesomeSnackbarContent(
         title: widget.title.toString(),
         message: widget.message.toString(),
-        /// change contentType to ContentType.success, ContentType.warning or ContentType.help for variants
         contentType: ContentType(widget.type.toString(), widget.backgroundColor),
     );
   }

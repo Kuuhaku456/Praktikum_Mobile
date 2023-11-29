@@ -31,7 +31,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
               onLastPage = (index == 2);
             });
           },
-          children: [
+          children: const [
             IntroPage1(),
             IntroPage2(),
             IntroPage3(),
