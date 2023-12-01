@@ -1,12 +1,27 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:posttest5_096_filipus_manik/widget/Button.dart';
 import 'package:posttest5_096_filipus_manik/widget/button_bulat.dart';
 
+// Future<Map<String, dynamic>> BacaData(String x, String y) async {
+//   Map<String, dynamic> o = <String, dynamic>{};
+//   final userRef = FirebaseFirestore.instance.collection('users');
+//   await userRef.get().then((snapshot) {
+//     snapshot.docs.forEach((doc) {
+//       if (doc.data()['username'] == x && doc.data()['password'] == y) {
+//         o = doc.data();
+//       }
+//     });
+//   });
+//   // print(o);
+//   return o;
+//   // return false;
+// }
+
 class MyProfile extends StatefulWidget {
   const MyProfile({super.key});
-
   @override
   State<MyProfile> createState() => _MyProfileState();
 }

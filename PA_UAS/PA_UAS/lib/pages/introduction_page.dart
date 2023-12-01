@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:posttest5_096_filipus_manik/intro_screen/intro_page_1.dart';
 import 'package:posttest5_096_filipus_manik/intro_screen/intro_page_2.dart';
 import 'package:posttest5_096_filipus_manik/intro_screen/intro_page_3.dart';
-import 'package:posttest5_096_filipus_manik/pages/Home_Page.dart';
 import 'package:posttest5_096_filipus_manik/pages/Screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -26,7 +25,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
       body: Stack(children: [
         PageView(
           controller: _controller,
-          onPageChanged: (index){
+          onPageChanged: (index) {
             setState(() {
               onLastPage = (index == 2);
             });
@@ -44,18 +43,17 @@ class _IntroductionPageState extends State<IntroductionPage> {
               children: [
                 // Skip
                 GestureDetector(
-                  onTap: (){
-                    _controller.jumpToPage(3);
-                  },
-                  child: Text(
-                    'Skip',
-                    style: GoogleFonts.poppins(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.yellow,
-                    ),
-                  )
-                ),
+                    onTap: () {
+                      _controller.jumpToPage(3);
+                    },
+                    child: Text(
+                      'Skip',
+                      style: GoogleFonts.poppins(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.yellow,
+                      ),
+                    )),
                 // Dot Indiicator
                 SmoothPageIndicator(
                   controller: _controller,
@@ -63,40 +61,36 @@ class _IntroductionPageState extends State<IntroductionPage> {
                 ),
                 // Next or done
                 onLastPage
-                  ? GestureDetector(
-                  onTap: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>const Screen()
-                      )
-                    );
-                  },
-                  child: Text(
-                    'Done',
-                    style: GoogleFonts.poppins(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.yellow,
-                    ),
-                  )
-                ) : GestureDetector(
-                  onTap: (){
-                    _controller.nextPage(
-                      duration: Duration(milliseconds: 500), 
-                      curve: Curves.easeIn,
-                    );
-                  },
-                  child: Text(
-                    'Next',
-                    style: GoogleFonts.poppins(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.yellow,
-                    ),
-                  )
-                )
-                
+                    ? GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Screen()));
+                        },
+                        child: Text(
+                          'Done',
+                          style: GoogleFonts.poppins(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.yellow,
+                          ),
+                        ))
+                    : GestureDetector(
+                        onTap: () {
+                          _controller.nextPage(
+                            duration: Duration(milliseconds: 500),
+                            curve: Curves.easeIn,
+                          );
+                        },
+                        child: Text(
+                          'Next',
+                          style: GoogleFonts.poppins(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.yellow,
+                          ),
+                        ))
               ],
             ))
       ]),

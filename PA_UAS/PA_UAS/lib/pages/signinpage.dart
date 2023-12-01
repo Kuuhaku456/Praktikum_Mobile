@@ -1,8 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:posttest5_096_filipus_manik/pages/Home_Page.dart';
 import 'package:posttest5_096_filipus_manik/pages/Screen.dart';
 import 'package:posttest5_096_filipus_manik/pages/signuppage.dart';
 import 'package:posttest5_096_filipus_manik/widget/Button.dart';
@@ -10,6 +10,26 @@ import 'package:posttest5_096_filipus_manik/widget/customsnackbar.dart';
 import 'package:posttest5_096_filipus_manik/widget/imagebutton.dart';
 import 'package:posttest5_096_filipus_manik/widget/passwordtextfield.dart';
 import 'package:posttest5_096_filipus_manik/widget/textfield.dart';
+
+// class baca_data {
+Future<bool> BacaData(String x, String y) async {
+  bool o = false;
+  final userRef = FirebaseFirestore.instance.collection('users');
+  await userRef.get().then((snapshot) {
+    snapshot.docs.forEach((doc) {
+      if (doc.data()['email'] == x && doc.data()['password'] == y) {
+        print('berhasil masuk');
+
+        o = true;
+      }
+      // print(doc.data());
+    });
+  });
+  print(o);
+  return o;
+  // return false;
+}
+// }
 
 class MySigninPage extends StatefulWidget {
   const MySigninPage({super.key});
@@ -114,18 +134,31 @@ Anime Here!''',
                 ),
                 Center(
                   child: MyButton(
-                      onTap: () {
-                        showSnackbar(
+                      onTap: () async {
+                        if (await BacaData(
+                            emailController.text, passwordController.text)) {
+                          // ignore: use_build_context_synchronously
+                          showSnackbar(
+                              context,
+                              'Berhasil!',
+                              'Selamat Anda berhasil Sign In',
+                              'Succes',
+                              DefaultColors.successGreen);
+                          // ignore: use_build_context_synchronously
+                          Navigator.pushReplacement(
                             context,
-                            'Berhasil!',
-                            'Selamat Anda berhasil Sign In',
-                            'Succes',
-                            DefaultColors.successGreen);
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Screen()),
-                        );
+                            MaterialPageRoute(
+                                builder: (context) => const Screen()),
+                          );
+                        } else {
+                          // ignore: use_build_context_synchronously
+                          showSnackbar(
+                              context,
+                              'Gagal!',
+                              'tidak berhasil masuk email atau password salah',
+                              'Failed',
+                              DefaultColors.failureRed);
+                        }
                       },
                       text: 'Sign In',
                       backgroundColor: Colors.yellow,

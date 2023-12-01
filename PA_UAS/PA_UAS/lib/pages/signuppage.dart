@@ -1,4 +1,5 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:posttest5_096_filipus_manik/pages/signinpage.dart';
@@ -8,6 +9,63 @@ import 'package:posttest5_096_filipus_manik/widget/passwordtextfield.dart';
 import 'package:posttest5_096_filipus_manik/widget/textfield.dart';
 
 import '../widget/imagebutton.dart';
+
+Future<bool> BacaData(String x, String y) async {
+  bool o = true;
+  final userRef = FirebaseFirestore.instance.collection('users');
+  await userRef.get().then((snapshot) {
+    snapshot.docs.forEach((doc) {
+      if (doc.data()['email'] == x || doc.data()['username'] == y) {
+        print('tidak berhasil masuk email atau username sudah ada');
+        o = false;
+      }
+    });
+  });
+  print(o);
+  return o;
+  // return false;
+}
+
+class AddUser {
+  final String username;
+  final String email;
+  final String pass;
+  final int age;
+
+  AddUser(this.username, this.email, this.pass, this.age);
+
+  Future<void> addUser() async {
+    // bool o;
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+    // bool o = BacaData(email, username);
+    // if (o) {
+    // if (o) {
+    //   return true;
+    // }
+    // print('tidak berhasil masuk');
+    // return false;
+
+    await users
+        .add({
+          'username': username,
+          'email': email, // John Doe
+          'password': pass, // Stokes and Sons
+          'usia': '',
+          'no_telp': '',
+          'favorit': [],
+          // 'favorit': ["sakura", "sasuke"],
+          // 'age': age // 42
+        })
+        // ignore: avoid_print
+        .then((value) => print("User Added"))
+        .catchError((error) => print("Failed to add user: $error"));
+    // } else {
+    //   print('tidak berhasil masuk email atau username sudah ada');
+
+    //   return;
+    // }
+  }
+}
 
 class MySignUpPage extends StatefulWidget {
   const MySignUpPage({super.key});
@@ -146,18 +204,36 @@ class _MySignUpPageState extends State<MySignUpPage> {
               Padding(
                 padding: const EdgeInsets.only(left: 15),
                 child: MyButton(
-                    onTap: () {
-                      showSnackbar(
+                    onTap: () async {
+                      if (await BacaData(
+                              emailController.text, usernameController.text) ==
+                          true) {
+                        AddUser(usernameController.text, emailController.text,
+                                passwordController.text, 1)
+                            .addUser();
+
+                        // ignore: use_build_context_synchronously
+                        showSnackbar(
+                            context,
+                            'Berhasil!',
+                            'Selamat Anda berhasil SignUp, Silahkan login terlebih dahulu!',
+                            'Succes',
+                            DefaultColors.successGreen);
+                        // ignore: use_build_context_synchronously
+                        Navigator.pushReplacement(
                           context,
-                          'Berhasil!',
-                          'Selamat Anda berhasil SignUp, Silahkan login terlebih dahulu!',
-                          'Succes',
-                          DefaultColors.successGreen);
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const MySigninPage()),
-                      );
+                          MaterialPageRoute(
+                              builder: (context) => const MySigninPage()),
+                        );
+                      } else {
+                        // ignore: use_build_context_synchronously
+                        showSnackbar(
+                            context,
+                            'Gagal!',
+                            'tidak berhasil masuk email atau username sudah ada',
+                            'Failed',
+                            DefaultColors.failureRed);
+                      }
                     },
                     text: 'Sign Up',
                     backgroundColor: Colors.yellow,

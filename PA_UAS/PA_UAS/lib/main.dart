@@ -1,6 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:posttest5_096_filipus_manik/firebase_options.dart';
 import 'package:posttest5_096_filipus_manik/pages/Screen.dart';
 import 'package:posttest5_096_filipus_manik/provider/Top_Anime_notifier.dart';
 import 'package:posttest5_096_filipus_manik/provider/anime_favorite_notifier.dart';
@@ -9,6 +13,12 @@ import 'package:provider/provider.dart';
 
 final getIt = GetIt.instance;
 void main() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  // WidgetsFlutterBinding.ensureInitialized();
+  // Firebase.initializeApp();
+
   final Dio apiClient = Dio();
   final AnimeRepository animeRepository = AnimeRepository(
     apiClient: apiClient,
@@ -19,7 +29,9 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => TopAnimeNotifier(repositories: AnimeRepository(apiClient: getIt.get<AnimeRepository>().apiClient)),
+          create: (_) => TopAnimeNotifier(
+              repositories: AnimeRepository(
+                  apiClient: getIt.get<AnimeRepository>().apiClient)),
         ),
         ChangeNotifierProvider(
           create: (_) => AnimeFavoriteNotifier(),

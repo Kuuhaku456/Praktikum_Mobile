@@ -44,39 +44,41 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAH6cO-M_ru_mF3edb574TGrBAo_enBKV0',
-    appId: '1:216071700151:web:ac51f05ff76b9f6e3e1732',
-    messagingSenderId: '216071700151',
-    projectId: 'projectakhirmobile-d1c72',
-    authDomain: 'projectakhirmobile-d1c72.firebaseapp.com',
-    storageBucket: 'projectakhirmobile-d1c72.appspot.com',
+    apiKey: 'AIzaSyAF2GjriTPRa0WDn6_AUrMbAd6SvZx3p4U',
+    appId: '1:113843920620:web:de7269a6ac1dce8bc94fc9',
+    messagingSenderId: '113843920620',
+    projectId: 'aexinl',
+    authDomain: 'aexinl.firebaseapp.com',
+    databaseURL: 'https://aexinl-default-rtdb.asia-southeast1.firebasedatabase.app',
+    storageBucket: 'aexinl.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBx8i4xBkAxz9GtDH3GYxxoK0MZuXRt1BI',
-    appId: '1:216071700151:android:f15159b0f9d8a8163e1732',
-    messagingSenderId: '216071700151',
-    projectId: 'projectakhirmobile-d1c72',
-    storageBucket: 'projectakhirmobile-d1c72.appspot.com',
+    apiKey: 'AIzaSyBUHx9R2qLWi_h9B4zzL9dKay0pl5yvv4I',
+    appId: '1:113843920620:android:4bee8a7817995aeac94fc9',
+    messagingSenderId: '113843920620',
+    projectId: 'aexinl',
+    databaseURL: 'https://aexinl-default-rtdb.asia-southeast1.firebasedatabase.app',
+    storageBucket: 'aexinl.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyA5LoIDDpZQ6ivRUcfd-iKsPiNSWm6Gm8o',
-    appId: '1:216071700151:ios:e106db0dc2a123233e1732',
-    messagingSenderId: '216071700151',
-    projectId: 'projectakhirmobile-d1c72',
-    storageBucket: 'projectakhirmobile-d1c72.appspot.com',
-    iosClientId: '216071700151-qondsf7qo05t30rio6gv1ktop9rsmt62.apps.googleusercontent.com',
+    apiKey: 'AIzaSyAY7mdt_6va7Xc4j5C6MkFtoFdd_DQmiDo',
+    appId: '1:113843920620:ios:9a946d14e69065e8c94fc9',
+    messagingSenderId: '113843920620',
+    projectId: 'aexinl',
+    databaseURL: 'https://aexinl-default-rtdb.asia-southeast1.firebasedatabase.app',
+    storageBucket: 'aexinl.appspot.com',
     iosBundleId: 'com.example.posttest5096FilipusManik',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyA5LoIDDpZQ6ivRUcfd-iKsPiNSWm6Gm8o',
-    appId: '1:216071700151:ios:99e3bbc71f9e91dd3e1732',
-    messagingSenderId: '216071700151',
-    projectId: 'projectakhirmobile-d1c72',
-    storageBucket: 'projectakhirmobile-d1c72.appspot.com',
-    iosClientId: '216071700151-gjhfj5igl7eef20t3olh73e8u7t1t0s1.apps.googleusercontent.com',
+    apiKey: 'AIzaSyAY7mdt_6va7Xc4j5C6MkFtoFdd_DQmiDo',
+    appId: '1:113843920620:ios:f08dbebcf645ebbdc94fc9',
+    messagingSenderId: '113843920620',
+    projectId: 'aexinl',
+    databaseURL: 'https://aexinl-default-rtdb.asia-southeast1.firebasedatabase.app',
+    storageBucket: 'aexinl.appspot.com',
     iosBundleId: 'com.example.posttest5096FilipusManik.RunnerTests',
   );
 }

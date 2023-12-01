@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:posttest5_096_filipus_manik/firebase_options.dart';
 import 'package:posttest5_096_filipus_manik/models/anime.dart';
 import 'package:posttest5_096_filipus_manik/pages/Favorites.dart';
 import 'package:posttest5_096_filipus_manik/pages/detail_anime.dart';
@@ -11,6 +14,38 @@ import 'package:posttest5_096_filipus_manik/widget/anime_cards.dart';
 import 'package:posttest5_096_filipus_manik/widget/genrebutton.dart';
 import 'package:posttest5_096_filipus_manik/widget/gridview_card.dart';
 import 'package:posttest5_096_filipus_manik/widget/slide_item.dart';
+
+
+// final user = FirebaseAuth.instance.currentUser;
+//   final snapshot = await FirebaseFirestore.instance
+//       .collection(user.email)
+//       .getDocuments()
+//       .then((snapshot) {
+//     for (int i = 0; i < snapshot.documents.length; i++) {
+//       reportList.add(Report.addData(
+//           snapshot.documents[i].id.toString(),
+//           snapshot.documents[i].data()["name"].toString(),
+//           snapshot.documents[i].data()["contact"].toString(),
+//           snapshot.documents[i].data()["time"].toString(),
+//           snapshot.documents[i].data()["description"].toString(),
+//           snapshot.documents[i].data()["additional_info"].toString()));
+//     }
+//       }
+// await Firebase.initializeApp();
+// await Firebase.initializeApp(
+//   options: DefaultFirebaseOptions.currentPlatform,
+//   // );
+//   var db = FirebaseFirestore.instance;
+//   final user = <String, dynamic>{
+//     "first": "Ada",
+//     "last": "Lovelace",
+//     "born": 1815
+//   };
+
+//   // Add a new document with a generated ID
+//   db.collection("users").add(user).then((DocumentReference doc) =>
+//       print('DocumentSnapshot added with ID: ${doc.id}'));
+// }
 
 class HomePage extends StatefulWidget {
   final id;
@@ -34,7 +69,10 @@ class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
   final List<Widget> _slides = [
     MySlideItem(
-        onTap: () {},
+        onTap: () {
+          // new baca_data().BacaData();
+          // new AddUser("aexon", "company", 12).addUser();
+        },
         rating: 8.45,
         title: 'One Piece',
         imagePath: 'assets/one_piece.jpg'),

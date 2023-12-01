@@ -43,7 +43,7 @@ class _ScreenState extends State<Screen> {
         child: page.elementAt(indexs),
       ),
       bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor:const Color(0xFF374259),
+        backgroundColor: const Color(0xFF374259),
         color: Colors.grey.shade400.withAlpha(128),
         items: const [
           Icon(
