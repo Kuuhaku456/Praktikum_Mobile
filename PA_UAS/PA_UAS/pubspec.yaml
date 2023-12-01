@@ -44,9 +44,12 @@ dependencies:
   json_annotation: ^4.8.1
   cached_network_image: ^3.3.0
   auto_size_text: 
-  firebase_core: 
+  # firebase_core: 
   ionicons: 
   awesome_snackbar_content: 
+  # firebase_core: 
+  cloud_firestore: 
+  firebase_core: ^2.24.0
 
 dev_dependencies:
   flutter_lints: ^3.0.0
