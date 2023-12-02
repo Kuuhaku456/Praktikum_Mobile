@@ -14,6 +14,7 @@ class _MyGenrePageState extends State<MyGenrePage> {
     return Scaffold(
       backgroundColor: const Color(0xFF374259),
       appBar: AppBar(
+        backgroundColor: const Color(0xFF374259),
           title: Text(
             'Genre Page',
             style: GoogleFonts.poppins(
@@ -22,6 +23,7 @@ class _MyGenrePageState extends State<MyGenrePage> {
               fontWeight: FontWeight.w600,
             ),
           ),
+          centerTitle: true,
       ),
     );
   }

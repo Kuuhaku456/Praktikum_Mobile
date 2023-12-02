@@ -32,8 +32,10 @@ class TopAnimeNotifier with ChangeNotifier {
             judul: element.title ?? "",
             Rating: element.score.toString(),
             Tipe: "",
-            Episode: element.episodes.toString(),
+            Episode: element.episodes,
             imagePath: imagePath,
+            genre: element.explicitGenres,
+
           ));
         });
         state = ProviderState.loaded; 

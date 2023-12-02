@@ -146,6 +146,7 @@ class _TopsAnimeViewState extends State<TopsAnimeView> {
                   itemCount: provider.getAnime.length,
                   itemBuilder: (context, index) {
                     return MyanimeCard(
+                      onTap: (){},
                       index: index,
                       title: provider.getAnime[index].judul,
                       imagePath: provider.getAnime[index].imagePath,  

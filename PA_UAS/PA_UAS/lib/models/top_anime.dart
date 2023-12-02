@@ -3,10 +3,11 @@ class Anime {
   String judul;
   String Rating;
   String Tipe;
-  String Episode;
+  int Episode;
   String imagePath;
   bool isFavorite;
   final bool isTapped;
+  List <dynamic> genre;
 
   Anime({
     required this.id,
@@ -17,5 +18,6 @@ class Anime {
     required this.imagePath,
     this.isFavorite = false,
     this.isTapped = false,
+    required this.genre,
   });
 }

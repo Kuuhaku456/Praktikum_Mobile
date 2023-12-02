@@ -146,70 +146,63 @@ class _HomePageState extends State<HomePage> {
                   scrollDirection: Axis.horizontal,
                   children: [
                     MyGenreButton(
-                        onTap: () {
+                        onTap: 
                           () => Navigator.of(context).push(CupertinoPageRoute(
                                   builder: (BuildContext context) {
                                 return const MyGenrePage();
-                              }));
-                        },
+                              })),                        
                         imagePath: 'assets/kny.png',
                         title: 'ACTION'),
                     MyGenreButton(
-                        onTap: () {
+                        onTap: 
                           () => Navigator.of(context).push(CupertinoPageRoute(
                                   builder: (BuildContext context) {
                                 return const MyGenrePage();
-                              }));
-                        },
+                              })),                        
                         imagePath: 'assets/one_piece.jpg',
                         title: 'ADVENTURE'),
                     MyGenreButton(
-                      onTap: () {
+                      onTap: 
                         () => Navigator.of(context).push(CupertinoPageRoute(
                                 builder: (BuildContext context) {
                               return const MyGenrePage();
-                            }));
-                      },
+                            })),
                       imagePath: 'assets/junji_ito.jpg',
                       title: 'HORROR',
                     ),
                     MyGenreButton(
-                      onTap: () {
+                      onTap: 
                         () => Navigator.of(context).push(CupertinoPageRoute(
                                 builder: (BuildContext context) {
                               return const MyGenrePage();
-                            }));
-                      },
+                            })),
                       imagePath: 'assets/shigatsu.jpg',
                       title: 'DRAMA',
                     ),
                     MyGenreButton(
-                      onTap: () {
+                      onTap: 
                         () => Navigator.of(context).push(CupertinoPageRoute(
                                 builder: (BuildContext context) {
                               return const MyGenrePage();
-                            }));
-                      },
+                            })),
                       imagePath: 'assets/mushoku_tensei.jpeg',
                       title: 'MAGIC',
                     ),
                     MyGenreButton(
-                      onTap: () {
+                      onTap:
                         () => Navigator.of(context).push(CupertinoPageRoute(
                                 builder: (BuildContext context) {
                               return const MyGenrePage();
-                            }));
-                      },
+                            })),
                       imagePath: 'assets/cs.jpg',
                       title: 'THRILLER',
                     ),
                     MyGenreButton(
-                      onTap: () {
+                      onTap: 
                         () => Navigator.of(context).push(CupertinoPageRoute(
                                 builder: (BuildContext context) {
                               return const MyGenrePage();
-                            }));
-                      },
+                            })),
                       imagePath: 'assets/gotoubun.jpg',
                       title: 'HAREM',
                     ),

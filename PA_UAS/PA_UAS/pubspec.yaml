@@ -47,6 +47,7 @@ dependencies:
   firebase_core: 
   ionicons: 
   awesome_snackbar_content: 
+  quickalert: 
 
 dev_dependencies:
   flutter_lints: ^3.0.0
