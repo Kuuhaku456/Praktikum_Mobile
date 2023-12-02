@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:posttest5_096_filipus_manik/pages/Home_Page.dart';
@@ -10,6 +11,8 @@ import 'package:posttest5_096_filipus_manik/widget/customsnackbar.dart';
 import 'package:posttest5_096_filipus_manik/widget/imagebutton.dart';
 import 'package:posttest5_096_filipus_manik/widget/passwordtextfield.dart';
 import 'package:posttest5_096_filipus_manik/widget/textfield.dart';
+import 'package:quickalert/models/quickalert_type.dart';
+import 'package:quickalert/widgets/quickalert_dialog.dart';
 
 class MySigninPage extends StatefulWidget {
   const MySigninPage({super.key});
@@ -21,20 +24,51 @@ class MySigninPage extends StatefulWidget {
 class _MySigninPageState extends State<MySigninPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  void showSnackbar(BuildContext context, String? title, String? message,
-      String? type, Color? backgroundColor) {
-    final snackbar = SnackBar(
-      elevation: 0,
-      behavior: SnackBarBehavior.floating,
-      backgroundColor: Colors.transparent,
-      content: MyCustomSnackbar(
-          title: title,
-          message: message,
-          type: type,
-          backgroundColor: backgroundColor),
+  void showAlert(String message) {
+    QuickAlert.show(
+      context: context,
+      type: QuickAlertType.error,
+      text: message,
     );
-    ScaffoldMessenger.of(context).showSnackBar(snackbar);
   }
+
+  void showAlertSuccess(String message) {
+    QuickAlert.show(
+      context: context,
+      type: QuickAlertType.success,
+      text: message,
+      onConfirmBtnTap: () => Navigator.of(context)
+          .push(CupertinoPageRoute(builder: (BuildContext context) {
+        return const Screen();
+      })),
+    );
+  }
+
+  void clearInputs() {
+    emailController.clear();
+    passwordController.clear();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+  }
+  // void showSnackbar(BuildContext context, String? title, String? message,
+  //     String? type, Color? backgroundColor) {
+  //   final snackbar = SnackBar(
+  //     elevation: 0,
+  //     behavior: SnackBarBehavior.floating,
+  //     backgroundColor: Colors.transparent,
+  //     content: MyCustomSnackbar(
+  //         title: title,
+  //         message: message,
+  //         type: type,
+  //         backgroundColor: backgroundColor),
+  //   );
+  //   ScaffoldMessenger.of(context).showSnackBar(snackbar);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -115,17 +149,17 @@ Anime Here!''',
                 Center(
                   child: MyButton(
                       onTap: () {
-                        showSnackbar(
-                            context,
-                            'Berhasil!',
-                            'Selamat Anda berhasil Sign In',
-                            'Succes',
-                            DefaultColors.successGreen);
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Screen()),
-                        );
+                        if (passwordController.text == "" ||
+                            emailController.text == "") {
+                          showAlert('inputan tidak boleh kosong');
+                        } else if (!RegExp(
+                                r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b')
+                            .hasMatch(emailController.text)) {
+                          showAlert('Format Email Salah');
+                        } else {
+                          showAlertSuccess('berhasil Sign in');
+                          clearInputs();
+                        }
                       },
                       text: 'Sign In',
                       backgroundColor: Colors.yellow,

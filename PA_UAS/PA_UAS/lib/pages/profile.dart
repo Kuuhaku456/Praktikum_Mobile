@@ -1,6 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:posttest5_096_filipus_manik/pages/edit_profile.dart';
 import 'package:posttest5_096_filipus_manik/widget/Button.dart';
 import 'package:posttest5_096_filipus_manik/widget/button_bulat.dart';
 
@@ -218,7 +220,10 @@ class _MyProfileState extends State<MyProfile> {
                   ),
                   const SizedBox(width: 30),
                   MyButton(
-                    onTap: () {},
+                    onTap: () => Navigator.of(context).push(
+                        CupertinoPageRoute(builder: (BuildContext context) {
+                      return const MyEditProfile();
+                    })),
                     text: 'Edit',
                     backgroundColor: Colors.yellow,
                     textColor: const Color(0xFF374259),

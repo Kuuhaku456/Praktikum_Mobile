@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:quickalert/models/quickalert_type.dart';
-import 'package:quickalert/widgets/quickalert_dialog.dart';
 
-class MyTextField extends StatefulWidget {
+class MyEmailTextField extends StatefulWidget {
   final TextEditingController? controller;
   final String? hintText;
   final Widget? prefixicon;
-  const MyTextField({
+  final Function()? showMessage;
+  const MyEmailTextField({
     super.key,
     required this.controller,
     required this.hintText,
     required this.prefixicon,
+    required this.showMessage,
   });
 
   @override
-  State<MyTextField> createState() => _MyTextFieldState();
+  State<MyEmailTextField> createState() => _MyEmailTextFieldState();
 }
 
-class _MyTextFieldState extends State<MyTextField> {
+class _MyEmailTextFieldState extends State<MyEmailTextField> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,7 +35,7 @@ class _MyTextFieldState extends State<MyTextField> {
           style: GoogleFonts.poppins(fontSize: 20),
           decoration: InputDecoration(
               prefixIcon: widget.prefixicon,
-              hintText: widget.hintText,
+              hintText: 'Email',
               hintStyle: GoogleFonts.poppins(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
@@ -47,6 +47,17 @@ class _MyTextFieldState extends State<MyTextField> {
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
               )),
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              widget.showMessage;
+            } else if (!RegExp(
+                    r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b')
+                .hasMatch(value!)) {
+              widget.showMessage;
+            } else {
+              return null;
+            }
+          },
         ));
   }
 }
