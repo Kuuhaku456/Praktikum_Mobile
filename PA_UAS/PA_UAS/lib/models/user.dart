@@ -7,6 +7,7 @@ class User{
   String ? phonenumber;
   int ? usia;
   List<Animes> ? animeFavorites;
+  String ? imagePath;
   User(
     {
       required this.id,
@@ -15,7 +16,7 @@ class User{
       required this.phonenumber,
       required this.usia,
       required this.animeFavorites,
-      
+      this.imagePath,
     }
   );
 }

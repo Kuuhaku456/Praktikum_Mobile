@@ -35,7 +35,7 @@ class TopAnimeNotifier with ChangeNotifier {
             Episode: element.episodes,
             imagePath: imagePath,
             genre: element.explicitGenres,
-
+            
           ));
         });
         state = ProviderState.loaded; 

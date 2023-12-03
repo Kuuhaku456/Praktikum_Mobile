@@ -48,6 +48,7 @@ dependencies:
   ionicons: 
   awesome_snackbar_content: 
   quickalert: 
+  image_picker: 
 
 dev_dependencies:
   flutter_lints: ^3.0.0
